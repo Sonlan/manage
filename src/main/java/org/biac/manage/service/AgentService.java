@@ -14,4 +14,32 @@ public interface AgentService {
      * @return
      */
     Agent login(String account,String password);
+
+    /**
+     * 经销商用户挂起
+     * @param id
+     * @return
+     */
+    int suspend(String id);
+
+    /**
+     * 经销商用户恢复
+     * @param id
+     * @return
+     */
+    int activate(String id);
+
+    /**
+     * 删除操作
+     * @param id
+     * @return
+     */
+    int delete(String id);
+
+    /**
+     * 用户信息编辑
+     * @param agent
+     * @return
+     */
+    int edit(Agent agent);
 }

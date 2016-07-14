@@ -1,28 +1,20 @@
 package org.biac.manage.service;
 
-import org.biac.manage.entity.CompanyUser;
+import org.biac.manage.entity.Salesman;
 
 /**
  * Created by Song on 2016/7/14.
  */
-public interface CompanyUserService {
+public interface SalesmanService {
     /**
-     * 企业用户登录，成功返回企业用户个人信息，失败返回null
-     * @param account
-     * @param password
-     * @return
-     */
-    CompanyUser login(String account, String password);
-
-    /**
-     * 企业用户用户挂起
+     * 推销员用户挂起
      * @param id
      * @return
      */
     int suspend(String id);
 
     /**
-     * 企业用户用户恢复
+     * 推销员用户恢复
      * @param id
      * @return
      */
@@ -40,5 +32,5 @@ public interface CompanyUserService {
      * @param agent
      * @return
      */
-    int edit(CompanyUser agent);
+    int edit(Salesman agent);
 }

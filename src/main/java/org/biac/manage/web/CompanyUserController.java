@@ -1,9 +1,8 @@
 package org.biac.manage.web;
 
-import org.biac.manage.entity.Agent;
-import org.biac.manage.service.AgentService;
+import org.biac.manage.entity.CompanyUser;
+import org.biac.manage.service.CompanyUserService;
 import org.biac.manage.utils.JsonUtil;
-import org.biac.manage.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,28 +13,28 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 经销商业务操作
+ * 企业用户业务逻辑处理
  * Created by Song on 2016/7/14.
  */
 @Controller
-@RequestMapping(value = "/agent")
-public class AgentController {
+@RequestMapping(value = "/companyuser")
+public class CompanyUserController {
     @Autowired
-    private AgentService agentService;
+    private CompanyUserService companyUserService;
     /**
      * 登录
      */
     @RequestMapping(value = "/login")
-    public void login(@RequestParam String account, @RequestParam String password, HttpServletResponse response, HttpServletRequest request) throws IOException{
+    public void login(@RequestParam String account, @RequestParam String password, HttpServletResponse response, HttpServletRequest request) throws IOException {
         response.setContentType("application/json;charset=utf-8");
         try{
-            Agent agent = agentService.login(account,password);
-            if(null != agent){
-                if(0 == agent.getStatus()) response.getWriter().write(JsonUtil.statusResponse(0,"该用户账户已被冻结，请联系管理员",null));
+            CompanyUser companyUser = companyUserService.login(account,password);
+            if(null != companyUser){
+                if(0 == companyUser.getStatus()) response.getWriter().write(JsonUtil.statusResponse(0,"该用户账户已被冻结，请联系管理员",null));
                 else {
-                    request.getSession().setAttribute("_AGENT",agent);
-                    request.getSession().setAttribute("_IDENTITY",0); //代表当前登录的是经销商
-                    response.getWriter().write(JsonUtil.statusResponse(0,"登录成功",agent));
+                    request.getSession().setAttribute("_COMPANYUSER",companyUser);
+                    request.getSession().setAttribute("_IDENTITY",1); //代表当前登录的是经销商
+                    response.getWriter().write(JsonUtil.statusResponse(0,"登录成功",companyUser));
                 }
             }else response.getWriter().write(JsonUtil.statusResponse(0,"不存在该用户",null));
         }catch (Exception e){
@@ -52,7 +51,7 @@ public class AgentController {
     @RequestMapping(value = "/suspend")
     public void suspend(@RequestParam String id,HttpServletResponse response) throws IOException{
         response.setContentType("application/json;charset=utf-8");
-        if(0==agentService.suspend(id)){
+        if(0==companyUserService.suspend(id)){
             response.getWriter().write(JsonUtil.statusResponse(0,"挂起成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"挂起异常",null));
     }
@@ -66,7 +65,7 @@ public class AgentController {
     @RequestMapping(value = "/activate")
     public void activate(@RequestParam String id,HttpServletResponse response) throws IOException{
         response.setContentType("application/json;charset=utf-8");
-        if(0==agentService.activate(id)){
+        if(0==companyUserService.activate(id)){
             response.getWriter().write(JsonUtil.statusResponse(0,"恢复成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"恢复异常",null));
     }
@@ -80,22 +79,21 @@ public class AgentController {
     @RequestMapping(value = "/delete.do")
     public void delete(@RequestParam String id,HttpServletResponse response) throws IOException{
         response.setContentType("application/json;charset=utf-8");
-        if(0==agentService.delete(id)){
+        if(0==companyUserService.delete(id)){
             response.getWriter().write(JsonUtil.statusResponse(0,"删除成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"删除异常",null));
     }
 
     /**
      * 用户编辑
-     * @param agent
+     * @param companyUser
      * @param response
      */
     @RequestMapping(value = "/edit.do")
-    public void edit(Agent agent,HttpServletResponse response) throws IOException{
+    public void edit(CompanyUser companyUser,HttpServletResponse response) throws IOException{
         response.setContentType("application/json;charset=utf-8");
-        if(0==agentService.edit(agent)){
+        if(0==companyUserService.edit(companyUser)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"修改失败",null));
     }
-
 }

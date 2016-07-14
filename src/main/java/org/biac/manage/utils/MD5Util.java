@@ -28,4 +28,14 @@ public class MD5Util {
             return null;
         }
     }
+    //对md5编码后的密码做按规则进一步编码
+    public static String compile(String str){
+        String key = "0123456789ABCDEF";
+        char [] key_swap = {'B', '1', '5', '4', 'E', '7', '6', '2', 'F', '9', 'A', '3', 'C', 'D', '8', '0'};
+        String result="";
+        for (char c:str.toCharArray()) {
+            result+=key_swap[key.indexOf(c+"")];
+        }
+        return result;
+    }
 }
