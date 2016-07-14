@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.biac.manage.dao.UserIdentityMapper" >
+  <resultMap id="BaseResultMap" type="org.biac.manage.entity.UserIdentity" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, openid, identity
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_identity
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_user_identity
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.Long" >
+    delete from tbl_user_identity
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.biac.manage.entity.UserIdentity" >
+    insert into tbl_user_identity (id, openid, identity
+      )
+    values (#{id,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR}, #{identity,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.biac.manage.entity.UserIdentity" >
+    insert into tbl_user_identity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByIdSelective" parameterType="org.biac.manage.entity.UserIdentity" >
+    update tbl_user_identity
+    <set >
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateById" parameterType="org.biac.manage.entity.UserIdentity" >
+    update tbl_user_identity
+    set openid = #{openid,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
