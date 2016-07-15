@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Component 
 public class DataSourceAspect {
 
-	@Before(value = "execution(* org.biac.trace.service.impl.*.*(..))")
+	@Before(value = "execution(* org.biac.manege.service.impl.*.*(..))")
 	public void beofre(JoinPoint jp) {
 		Object[] args=jp.getArgs();
 		BigDecimal workMode=new BigDecimal(-1);
@@ -32,7 +32,7 @@ public class DataSourceAspect {
 //		DynamicDataSource.setDataSource(new BigDecimal(-1));
 	  }
 	
-	@After(value = "execution(* org.biac.trace.service.impl.*.*(..))")
+	@After(value = "execution(* org.biac.manege.service.impl.*.*(..))")
 	public void after(JoinPoint jp){
 		DynamicDataSource.clearDataSource();
 	}
