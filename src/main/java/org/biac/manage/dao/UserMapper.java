@@ -5,7 +5,7 @@ import org.biac.manage.entity.User;
 
 public interface UserMapper {
 
-    int deleteById(long id);
+    int deleteById(String id);
 
     int insert(User record);
 
@@ -18,4 +18,18 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByOpenid(User record);
+
+    /**
+     * 将status置1，用户冻结
+     * @param id
+     * @return
+     */
+    int suspend(String id);
+
+    /**
+     * 将status置0，用户激活
+     * @param id
+     * @return
+     */
+    int activate(String id);
 }

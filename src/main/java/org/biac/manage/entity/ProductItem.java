@@ -2,7 +2,7 @@ package org.biac.manage.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class ProductList {
+public class ProductItem {
     private long id;
 
     private String name;

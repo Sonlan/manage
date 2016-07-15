@@ -20,4 +20,25 @@ public interface UserService {
      * @return
      */
     int updateUser(User user);
+
+    /**
+     * 用户挂起
+     * @param id
+     * @return
+     */
+    int suspend(String id);
+
+    /**
+     * 用户恢复激活
+     * @param id
+     * @return
+     */
+    int activate(String id);
+
+    /**
+     * 消费者信息删除
+     * @param id
+     * @return
+     */
+    int delete(String id);
 }

@@ -1,17 +1,17 @@
 package org.biac.manage.service;
 
-import org.biac.manage.entity.ActivityInfo;
+import org.biac.manage.entity.StoreInfo;
 
 /**
- * Created by Song on 2016/7/14.
+ * Created by Song on 2016/7/15.
  */
-public interface ActivityInfoService {
+public interface StoreInfoService {
     /**
      * 新增一条经销点信息记录
-     * @param activityInfo
+     * @param storeInfo
      * @return
      */
-    int add(ActivityInfo activityInfo);
+    int add(StoreInfo storeInfo);
 
     /**
      * 删除一条经销点信息记录
@@ -22,8 +22,9 @@ public interface ActivityInfoService {
 
     /**
      * 修改一条经销点信息
-     * @param activityInfo
+     * @param storeInfo
      * @return
      */
-    int update(ActivityInfo activityInfo);
+    int update(StoreInfo storeInfo);
 }
+

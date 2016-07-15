@@ -13,6 +13,18 @@
   <sql id="Base_Column_List" >
     id, openid, nickname, sex, headimgurl,create_date, status
   </sql>
+  <update id="suspend" parameterType="java.lang.String" >
+    update TBL_USER
+    set
+    status = 1
+    WHERE id = #{record.id,jdbcType=BIGINT}
+  </update>
+  <update id="activate" parameterType="java.lang.String" >
+    update TBL_USER
+    set
+    status = 0
+    WHERE id = #{record.id,jdbcType=BIGINT}
+  </update>
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
@@ -25,7 +37,7 @@
     from TBL_USER
     where openid = #{openid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteById" parameterType="java.lang.Long" >
+  <delete id="deleteById" parameterType="java.lang.String" >
     delete from TBL_USER
     where id = #{id,jdbcType=BIGINT}
   </delete>
@@ -114,7 +126,7 @@
   </update>
   <update id="updateByOpenid" parameterType="org.biac.manage.entity.User" >
     update TBL_USER
-    set openid = #{openid,jdbcType=VARCHAR},
+    set
       nickname = #{nickname,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=TINYINT},
       headimgurl = #{headimgurl,jdbcType=VARCHAR}

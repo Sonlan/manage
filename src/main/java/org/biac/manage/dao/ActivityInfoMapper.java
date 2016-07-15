@@ -4,15 +4,24 @@ import org.biac.manage.entity.ActivityInfo;
 
 public interface ActivityInfoMapper {
 
-    int deleteByPrimaryKey(long id);
+    /**
+     * 新增一条活动信息记录
+     * @param activityInfo
+     * @return
+     */
+    int insertSelective(ActivityInfo activityInfo);
 
-    int insert(ActivityInfo record);
+    /**
+     * 删除一条活动信息记录
+     * @param id
+     * @return
+     */
+    int delete(String id);
 
-    int insertSelective(ActivityInfo record);
-
-    ActivityInfo selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(ActivityInfo record);
-
-    int updateByPrimaryKey(ActivityInfo record);
+    /**
+     * 更新一条活动信息记录
+     * @param activityInfo
+     * @return
+     */
+    int updateByIdSelective(ActivityInfo activityInfo);
 }
