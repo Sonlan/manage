@@ -2,6 +2,7 @@ package org.biac.manage.dao;
 
 import org.biac.manage.entity.CompanyUser;
 
+import java.util.List;
 import java.util.Map;
 
 public interface CompanyUserMapper {
@@ -53,4 +54,18 @@ public interface CompanyUserMapper {
      * @return
      */
     int updateSelective(Map<Object,Object> map);
+
+    /**
+     * 根据企业用户账户名与用户权限分页查找用户
+     * @param map
+     * @return
+     */
+    List<CompanyUser> query(Map<Object,Object> map);
+
+    /**+
+     * 根据企业用户账户名与用户权限查找用户
+     * @param map
+     * @return
+     */
+    List<CompanyUser> queryForSize(Map<Object,Object> map);
 }

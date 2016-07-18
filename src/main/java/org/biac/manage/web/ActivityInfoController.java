@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -16,11 +17,12 @@ import java.io.IOException;
  * Created by Song on 2016/7/15.
  */
 @Controller
+@RequestMapping(value = "/activityinfo")
 public class ActivityInfoController {
     @Autowired
     private ActivityInfoService activityInfoService;
     /**
-     * 经销点信息删除
+     * 活动信息删除
      * @param id
      * @param response
      * @throws IOException
@@ -34,7 +36,7 @@ public class ActivityInfoController {
     }
 
     /**
-     * 经销点信息编辑
+     * 活动信息编辑
      * @param activityInfo
      * @param response
      */
@@ -47,7 +49,7 @@ public class ActivityInfoController {
     }
 
     /**
-     * 新增经销点信息
+     * 新增活动信息
      * @param activityInfo
      * @param response
      * @throws IOException
@@ -61,13 +63,19 @@ public class ActivityInfoController {
     }
 
     /**
-     * 根据经销点名称查询
-     * @param name 产品名称
+     * 根据活动名称以及活动id查询
      * @param page 当前页面数
      * @param response
      * @throws IOException
      */
-    public void query(@RequestParam String name,@RequestParam String page, HttpServletResponse response) throws IOException{
-
+    @RequestMapping(value = "/query")
+    public void query(@RequestParam String page, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        response.setContentType("application/json;charset=utf-8");
+        String activity_id = request.getParameter("activity_id");
+        String theme = request.getParameter("theme");
+        int length = activityInfoService.queryForSize(activity_id,theme);
+        if(0==length){
+            response.getWriter().write(JsonUtil.statusResponse(0,"无符合条件的活动记录",null));
+        }else response.getWriter().write(JsonUtil.statusResponse(0,length,activityInfoService.query(activity_id,theme,page)));
     }
 }

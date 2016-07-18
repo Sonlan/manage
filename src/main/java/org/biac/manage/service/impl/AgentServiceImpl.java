@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -21,6 +22,55 @@ public class AgentServiceImpl implements AgentService{
     private AgentMapper agentDao;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    /**
+     * 经销商用户选择
+     *
+     * @param name
+     * @param range
+     * @param area_code
+     * @param page
+     * @return
+     */
+    public List<Agent> query(String name, String range, String area_code, String page) {
+        try{
+            int pageNum = Integer.parseInt(page);
+            Map<Object,Object> map = new HashMap<Object, Object>();
+            map.put("name",name);
+            map.put("range",range);
+            map.put("area_code",area_code);
+            map.put("page_start",pageNum*10);
+            map.put("page_end",pageNum*10+10);
+            return agentDao.querySelective(map);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error(this.getClass().toString()+"经销商用户信息获取异常");
+            return  null;
+        }
+    }
+
+    /**
+     * 查询符合条件的所有消息记录
+     *
+     * @param name
+     * @param range
+     * @param area_code
+     * @return
+     */
+    public int queryForSize(String name, String range, String area_code) {
+        try{
+            Map<Object,Object> map = new HashMap<Object, Object>();
+            map.put("name",name);
+            map.put("range",range);
+            map.put("area_code",area_code);
+            return agentDao.queryForSize(map).size();
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error(this.getClass().toString()+"经销商用户信息数目获取异常");
+            return  0;
+        }
+    }
 
     /**
      * 用户信息编辑

@@ -2,6 +2,7 @@ package org.biac.manage.dao;
 
 import org.biac.manage.entity.Agent;
 
+import java.util.List;
 import java.util.Map;
 
 public interface AgentMapper {
@@ -53,4 +54,18 @@ public interface AgentMapper {
      * @return
      */
     int updateSelective(Map<Object,Object> map);
+
+    /**
+     * 按条件分页查询
+     * @param map
+     * @return
+     */
+    List<Agent> querySelective(Map<Object,Object> map);
+
+    /**
+     * 按条件查询
+     * @param map
+     * @return
+     */
+    List<Agent> queryForSize(Map<Object,Object> map);
 }

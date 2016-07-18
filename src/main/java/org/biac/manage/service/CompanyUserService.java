@@ -2,6 +2,8 @@ package org.biac.manage.service;
 
 import org.biac.manage.entity.CompanyUser;
 
+import java.util.List;
+
 /**
  * Created by Song on 2016/7/14.
  */
@@ -41,4 +43,21 @@ public interface CompanyUserService {
      * @return
      */
     int edit(CompanyUser agent);
+
+    /**
+     * 根据账户名与权限分页查找用户
+     * @param account
+     * @param authority
+     * @param page
+     * @return
+     */
+    List<CompanyUser> query(String account,String authority,String page);
+
+    /**
+     * 返回符合查询条件的记录数目
+     * @param account
+     * @param authority
+     * @return
+     */
+    int queryForSize(String account,String authority);
 }

@@ -52,6 +52,36 @@
     from tbl_company_user
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="query" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tbl_company_user
+    <where>
+      1=1
+      <if test="account !=null">
+        and account  LIKE '%${account}%'
+      </if>
+      <if test="authority != null">
+        and authority = #{authority,jdbcType=TINYINT}
+      </if>
+    </where>
+    ORDER BY create_date DESC
+    limit ${page_start},${page_end}
+  </select>
+  <select id="queryForSize" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tbl_company_user
+    <where>
+      1=1
+      <if test="account !=null">
+        and account  LIKE '%${account}%'
+      </if>
+      <if test="authority != null">
+        and authority = #{authority,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from tbl_company_user
     where id = #{id,jdbcType=BIGINT}

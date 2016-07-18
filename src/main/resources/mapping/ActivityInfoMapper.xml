@@ -21,7 +21,37 @@
     from tbl_activity_info
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <select id="querySelective" resultType="org.biac.manage.entity.ActivityInfo" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_activity_info
+    <where>
+      1=1
+      <if test="theme !=null">
+       and theme LIKE  '%${theme}%'
+      </if>
+      <if test="activity_id !=null">
+        and activity_id =  #{activity_id,jdbcType=BIGINT}
+      </if>
+    </where>
+    ORDER BY create_date DESC
+    limit #{page_start},#{page_end}
+  </select>
+  <select id="queryForSize" resultType="org.biac.manage.entity.ActivityInfo" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_activity_info
+        <where>
+            1=1
+            <if test="theme !=null">
+                and theme  LIKE  '%${theme}%'
+            </if>
+            <if test="activity_id !=null">
+                and activity_id =  #{activity_id,jdbcType=BIGINT}
+            </if>
+        </where>
+    </select>
+  <delete id="delete" parameterType="java.lang.String" >
     delete from tbl_activity_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
@@ -88,25 +118,25 @@
     update tbl_activity_info
     <set >
       <if test="activityId != null" >
-        activity_id = #{record.activityId,jdbcType=BIGINT},
+        activity_id = #{activityId,jdbcType=BIGINT},
       </if>
       <if test="theme != null" >
-        theme = #{record.theme,jdbcType=VARCHAR},
+        theme = #{theme,jdbcType=VARCHAR},
       </if>
       <if test="bonus != null" >
-        bonus = #{record.bonus,jdbcType=INTEGER},
+        bonus = #{bonus,jdbcType=INTEGER},
       </if>
       <if test="startDate != null" >
-        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+        start_date = #{startDate,jdbcType=TIMESTAMP},
       </if>
       <if test="endDate != null" >
-        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+        end_date = #{endDate,jdbcType=TIMESTAMP},
       </if>
       <if test="description != null" >
-        description = #{record.description,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
-        status = #{status,jdbcType=TINYINT},
+        status = #{jdbcType=TINYINT},
       </if>
     </set>
     WHERE id = #{id,jdbcType=BIGINT}

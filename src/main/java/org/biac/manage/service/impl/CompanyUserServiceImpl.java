@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -102,6 +103,50 @@ public class CompanyUserServiceImpl implements CompanyUserService{
         }catch (Exception e){
             logger.error(this.getClass().toString()+"用户修改异常");
             return 1;
+        }
+    }
+
+    /**
+     * 根据账户名与权限分页查找用户
+     *
+     * @param account
+     * @param authority
+     * @param page
+     * @return
+     */
+    public List<CompanyUser> query(String account, String authority, String page) {
+        try{
+            int pageNum = Integer.parseInt(page);
+            Map<Object,Object> map = new HashMap<Object, Object>();
+            map.put("account",account);
+            map.put("authority",authority);
+            map.put("page_start",pageNum*10);
+            map.put("page_end",pageNum*10+10);
+            return companyUserDao.query(map);
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error(this.getClass().toString()+"企业用户查询异常");
+            return  null;
+        }
+    }
+
+    /**
+     * 返回符合查询条件的记录数目
+     *
+     * @param account
+     * @param authority
+     * @return
+     */
+    public int queryForSize(String account, String authority) {
+        try{
+            Map<Object,Object> map = new HashMap<Object, Object>();
+            map.put("account",account);
+            map.put("authority",authority);
+            return companyUserDao.queryForSize(map).size();
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error(this.getClass().toString()+"企业用户数目查询异常");
+            return  0;
         }
     }
 }

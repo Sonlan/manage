@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -63,12 +64,16 @@ public class ProductItemController {
 
     /**
      * 根据产品名称查询
-     * @param name 产品名称
      * @param page 当前页面数
      * @param response
      * @throws IOException
      */
-    public void query(@RequestParam String name,@RequestParam String page, HttpServletResponse response) throws IOException{
-
+    @RequestMapping(value = "/query")
+    public void query(@RequestParam String page, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        String name = request.getParameter("name");
+        int length = productItemService.queryForSize(name);
+        if(0==length){
+            response.getWriter().write(JsonUtil.statusResponse(0,"没有满足条件的产品数据",null));
+        }else response.getWriter().write(JsonUtil.statusResponse(0,length,productItemService.query(name,page)));
     }
 }

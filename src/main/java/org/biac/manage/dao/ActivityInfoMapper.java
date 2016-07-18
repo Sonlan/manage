@@ -2,6 +2,9 @@ package org.biac.manage.dao;
 
 import org.biac.manage.entity.ActivityInfo;
 
+import java.util.List;
+import java.util.Map;
+
 public interface ActivityInfoMapper {
 
     /**
@@ -24,4 +27,19 @@ public interface ActivityInfoMapper {
      * @return
      */
     int updateByIdSelective(ActivityInfo activityInfo);
+
+    /**
+     * 根据活动名称以及活动id查询活动信息详情
+     * @param map
+     * @return
+     */
+    List<ActivityInfo> querySelective(Map<Object,Object> map);
+
+    /**
+     * 查询符合条件的所有活动信息记录
+     * @param map
+     * @return
+     */
+    List<ActivityInfo> queryForSize(Map<Object,Object> map);
+
 }

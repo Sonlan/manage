@@ -3,6 +3,8 @@ package org.biac.manage.service;
 
 import org.biac.manage.entity.Agent;
 
+import java.util.List;
+
 /**
  * Created by Song on 2016/7/14.
  */
@@ -42,4 +44,23 @@ public interface AgentService {
      * @return
      */
     int edit(Agent agent);
+
+    /**
+     * 经销商用户选择
+     * @param name
+     * @param range
+     * @param area_code
+     * @param page
+     * @return
+     */
+    List<Agent> query(String name,String range,String area_code,String page);
+
+    /**
+     * 查询符合条件的所有消息记录
+     * @param name
+     * @param range
+     * @param area_code
+     * @return
+     */
+    int queryForSize(String name,String range,String area_code);
 }

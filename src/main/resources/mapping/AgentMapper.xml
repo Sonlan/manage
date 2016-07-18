@@ -36,6 +36,55 @@
     from tbl_agent
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_agent t1
+    <where>
+      1=1
+      and store_id in (
+        SELECT id from tbl_store_info t2
+        <where>
+            1=1
+            <if test="name != null">
+                and t2.name LIKE '%${name}%'
+            </if>
+            <if test="range !=null">
+                and t2.range LIKE '%${range}%'
+            </if>
+            <if test="area_code != null">
+                and t2.area_code =#{area_code,jdbcType=INTEGER}
+            </if>
+        </where>
+        ORDER BY t2.create_date DESC
+      )
+      </where>
+    limit #{page_start},#{page_end}
+  </select>
+    <select id="queryForSize" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select
+        <include refid="Base_Column_List" />
+        from tbl_agent t1
+        <where>
+            1=1
+            and store_id in (
+            SELECT id from tbl_store_info t2
+            <where>
+                1=1
+                <if test="name != null">
+                    and t2.name LIKE '%${name}%'
+                </if>
+                <if test="range !=null">
+                    and t2.range LIKE '%${range}%'
+                </if>
+                <if test="area_code != null">
+                    and t2.area_code =#{area_code,jdbcType=INTEGER}
+                </if>
+            </where>
+            ORDER BY t2.create_date DESC
+            )
+        </where>
+    </select>
   <delete id="delete" parameterType="java.lang.String" >
     delete from tbl_agent
     where id = #{id,jdbcType=BIGINT}

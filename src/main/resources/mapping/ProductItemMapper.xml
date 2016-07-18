@@ -24,6 +24,30 @@
     from tbl_product_list
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="query" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from tbl_product_list
+    <where>
+      1=1
+      <if test="name !=null">
+        name = #{name,jdbcType=VARCHAR}
+      </if>
+    </where>
+    ORDER BY create_date DESC
+    limit ${page_start},${page_end}
+  </select>
+  <select id="queryForSize" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from tbl_product_list
+    <where>
+      1=1
+      <if test="name !=null">
+        name = #{name,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
   <delete id="delete" parameterType="java.lang.Long" >
     delete from tbl_product_list
     where id = #{id,jdbcType=BIGINT}

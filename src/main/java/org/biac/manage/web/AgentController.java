@@ -98,4 +98,22 @@ public class AgentController {
         }else response.getWriter().write(JsonUtil.statusResponse(0,"修改失败",null));
     }
 
+    /**
+     * 根据经销点名称、经营范围以及地理区域选择经销商用户
+     * @param page
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(value = "/query")
+    public void query(@RequestParam String page,HttpServletRequest request,HttpServletResponse response) throws IOException{
+        response.setContentType("application/json;charset=utf-8");
+        String name = request.getParameter("name");
+        String range = request.getParameter("range");
+        String area_code = request.getParameter("area_code");
+        int length = agentService.queryForSize(name,range,area_code);
+        if(0==length){
+            response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据",null));
+        }else response.getWriter().write(JsonUtil.statusResponse(0,length,agentService.query(name,range,area_code,page)));
+    }
 }

@@ -2,6 +2,8 @@ package org.biac.manage.service;
 
 import org.biac.manage.entity.ProductItem;
 
+import java.util.List;
+
 /**
  * Created by Song on 2016/7/15.
  */
@@ -26,4 +28,19 @@ public interface ProductItemService {
      * @return
      */
     int update(ProductItem productItem);
+
+    /**
+     * 按产品名称分页查询
+     * @param name
+     * @param page
+     * @return
+     */
+    List<ProductItem> query(String name,String page);
+
+    /**
+     * 按产品名称查询符合条件的记录数目
+     * @param name
+     * @return
+     */
+    int queryForSize(String name);
 }
