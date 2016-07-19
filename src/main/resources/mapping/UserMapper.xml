@@ -37,6 +37,30 @@
     from TBL_USER
     where openid = #{openid,jdbcType=VARCHAR}
   </select>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from TBL_USER
+    <where>
+      1=1
+      <if test="nickname != null">
+        and name LIKE '%${nickname}%'
+      </if>
+    </where>
+    ORDER BY create_date DESC
+    limit #{page_start},#{page_end}
+  </select>
+  <select id="queryForSize" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from TBL_USER
+    <where>
+      1=1
+      <if test="nickname != null">
+        and name LIKE '%${nickname}%'
+      </if>
+    </where>
+  </select>
   <delete id="deleteById" parameterType="java.lang.String" >
     delete from TBL_USER
     where id = #{id,jdbcType=BIGINT}

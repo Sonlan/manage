@@ -2,6 +2,8 @@ package org.biac.manage.service;
 
 import org.biac.manage.entity.User;
 
+import java.util.List;
+
 
 /**
  * Created by Song on 2016/7/12.
@@ -41,4 +43,19 @@ public interface UserService {
      * @return
      */
     int delete(String id);
+
+    /**
+     * 根据用户微信昵称分页查询用户
+     * @param nickname
+     * @param page
+     * @return
+     */
+    List<User> query(String nickname, String page);
+
+    /**
+     * 查询得到符合查询条件的消息总数
+     * @param nickname
+     * @return
+     */
+    int queryForSize(String nickname);
 }

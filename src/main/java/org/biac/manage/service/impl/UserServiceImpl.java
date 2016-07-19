@@ -8,6 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by Song on 2016/7/12.
  */
@@ -101,4 +105,43 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    /**
+     * 根据用户微信昵称分页查询用户
+     *
+     * @param nickname
+     * @param page
+     * @return
+     */
+    public List<User> query(String nickname, String page) {
+        try{
+            int pageNum = Integer.parseInt(page);
+            Map<Object,Object> map = new HashMap<Object, Object>();
+            map.put("nickname",nickname);
+            map.put("page_start",pageNum*10);
+            map.put("page_end",pageNum*10+10);
+            return userDao.querySelective(map);
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error(this.getClass().toString()+"普通消费者信息获取异常");
+            return  null;
+        }
+    }
+
+    /**
+     * 查询得到符合查询条件的消息总数
+     *
+     * @param nickname
+     * @return
+     */
+    public int queryForSize(String nickname) {
+        try{
+            Map<Object,Object> map = new HashMap<Object, Object>();
+            map.put("nickname",nickname);
+            return userDao.queryForSize(map).size();
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error(this.getClass().toString()+"普通消费者信息数目获取异常");
+            return  0;
+        }
+    }
 }

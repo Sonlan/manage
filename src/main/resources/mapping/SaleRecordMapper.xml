@@ -17,6 +17,42 @@
     from tbl_sale_record
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_sale_record
+    <where>
+      1=1
+      <if test="code != null">
+        and name LIKE '%${code}%'
+      </if>
+      <if test="nickname !=null">
+        and openid in (
+          SELECT openid from TBL_USER t2
+          where t2.nikename LIKE '%${nickname}%'
+        )
+      </if>
+    </where>
+    ORDER BY create_time DESC
+    limit #{page_start},#{page_end}
+  </select>
+  <select id="queryForSize" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_sale_record
+    <where>
+      1=1
+      <if test="code != null">
+        and name LIKE '%${code}%'
+      </if>
+      <if test="nickname !=null">
+        and openid in (
+        SELECT openid from TBL_USER t2
+        where t2.nikename LIKE '%${nickname}%'
+        )
+      </if>
+    </where>
+  </select>
   <delete id="delete" parameterType="java.lang.String" >
     delete from tbl_sale_record
     where id = #{id,jdbcType=BIGINT}

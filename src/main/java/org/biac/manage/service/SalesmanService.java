@@ -2,6 +2,8 @@ package org.biac.manage.service;
 
 import org.biac.manage.entity.Salesman;
 
+import java.util.List;
+
 /**
  * Created by Song on 2016/7/14.
  */
@@ -33,4 +35,23 @@ public interface SalesmanService {
      * @return
      */
     int edit(Salesman agent);
+
+    /**
+     * 推销员用户分页查询
+     * @param name
+     * @param work_id
+     * @param status
+     * @param page
+     * @return
+     */
+    List<Salesman> query(long store_id,String name, String work_id, String status, String page);
+
+    /**
+     * 返回符合查询条件的信息总数
+     * @param name
+     * @param work_id
+     * @param status
+     * @return
+     */
+    int queryForSize(long store_id,String name, String work_id, String status);
 }

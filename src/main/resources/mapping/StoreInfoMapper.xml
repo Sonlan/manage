@@ -18,6 +18,44 @@
     from tbl_store_info
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_store_info
+    <where>
+      1=1
+        <if test="name != null">
+          and name LIKE '%${name}%'
+        </if>
+        <if test="range !=null">
+          and range LIKE '%${range}%'
+        </if>
+        <if test="area_code != null">
+          and area_code =#{area_code,jdbcType=INTEGER}
+        </if>
+    </where>
+    ORDER BY create_date DESC
+    limit #{page_start},#{page_end}
+  </select>
+  <select id="queryForSize" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_store_info
+    <where>
+      1=1
+      <if test="name != null">
+        and name LIKE '%${name}%'
+      </if>
+      <if test="range !=null">
+        and range LIKE '%${range}%'
+      </if>
+      <if test="area_code != null">
+        and area_code =#{area_code,jdbcType=INTEGER}
+      </if>
+    </where>
+    ORDER BY create_date DESC
+    limit #{page_start},#{page_end}
+  </select>
   <delete id="delete" parameterType="java.lang.String" >
     delete from tbl_store_info
     where id = #{id,jdbcType=BIGINT}

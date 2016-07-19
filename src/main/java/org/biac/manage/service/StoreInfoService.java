@@ -2,6 +2,8 @@ package org.biac.manage.service;
 
 import org.biac.manage.entity.StoreInfo;
 
+import java.util.List;
+
 /**
  * Created by Song on 2016/7/15.
  */
@@ -26,5 +28,25 @@ public interface StoreInfoService {
      * @return
      */
     int update(StoreInfo storeInfo);
+
+    /**
+     * 按条件分页查询经销点信息
+     * @param name 经销点名称
+     * @param range 经营范围
+     * @param area_code 地理位置编码
+     * @param page
+     * @return
+     */
+    List<StoreInfo> query(String name,String range,String area_code,String page);
+
+    /**
+     * 获得满足查询条件的信息数
+     * @param name
+     * @param range
+     * @param area_code
+     * @return
+     */
+    int queryForSize(String name,String range,String area_code);
+
 }
 

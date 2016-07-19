@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -68,5 +69,15 @@ public class UserController {
         if(0==userService.updateUser(user)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"修改失败",null));
+    }
+
+    @RequestMapping(value = "/query")
+    public  void query(@RequestParam String page, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        response.setContentType("application/json;charset=utf-8");
+        String nickname = request.getParameter("nickname");  //微信昵称
+        int length = userService.queryForSize(nickname);
+        if(0==length){
+            response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据",null));
+        }else response.getWriter().write(JsonUtil.statusResponse(0,length,userService.query(nickname,page)));
     }
 }

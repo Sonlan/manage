@@ -3,6 +3,7 @@ package org.biac.manage.dao;
 
 import org.biac.manage.entity.Salesman;
 
+import java.util.List;
 import java.util.Map;
 
 public interface SalesmanMapper {
@@ -45,4 +46,18 @@ public interface SalesmanMapper {
      * @return
      */
     int updateSelective(Map<Object, Object> map);
+
+    /**
+     * 分页查询当前经销商用户下的推销员账户
+     * @param map
+     * @return
+     */
+    List<Salesman> querySelective(Map<Object,Object> map);
+
+    /**
+     * 查询当前经销商下符合查询条件的推销员人数
+     * @param map
+     * @return
+     */
+    List<Salesman> queryForSize(Map<Object,Object> map);
 }

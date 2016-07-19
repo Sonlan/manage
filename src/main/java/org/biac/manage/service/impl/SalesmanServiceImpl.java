@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -83,6 +84,56 @@ public class SalesmanServiceImpl implements SalesmanService{
         }catch (Exception e){
             logger.error(this.getClass().toString()+"推销员信息修改异常");
             return 1;
+        }
+    }
+
+    /**
+     * 推销员用户分页查询
+     *
+     * @param name
+     * @param work_id
+     * @param status
+     * @param page
+     * @return
+     */
+    public List<Salesman> query(long store_id,String name, String work_id, String status, String page) {
+        try{
+            int pageNum = Integer.parseInt(page);
+            Map<Object,Object> map = new HashMap<Object, Object>();
+            map.put("store_id",store_id);
+            map.put("name",name);
+            map.put("work_id",work_id);
+            map.put("status",status);
+            map.put("page_start",pageNum*10);
+            map.put("page_end",pageNum*10+10);
+            return salesmanDao.querySelective(map);
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error(this.getClass().toString()+"推销员信息获取异常");
+            return  null;
+        }
+    }
+
+    /**
+     * 返回符合查询条件的信息总数
+     *
+     * @param name
+     * @param work_id
+     * @param status
+     * @return
+     */
+    public int queryForSize(long store_id,String name, String work_id, String status) {
+        try{
+            Map<Object,Object> map = new HashMap<Object, Object>();
+            map.put("store_id",store_id);
+            map.put("name",name);
+            map.put("work_id",work_id);
+            map.put("status",status);
+            return salesmanDao.queryForSize(map).size();
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error(this.getClass().toString()+"推销员信息数目获取异常");
+            return  0;
         }
     }
 }

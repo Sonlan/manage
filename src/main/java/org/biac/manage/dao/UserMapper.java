@@ -3,6 +3,9 @@ package org.biac.manage.dao;
 
 import org.biac.manage.entity.User;
 
+import java.util.List;
+import java.util.Map;
+
 public interface UserMapper {
 
     int deleteById(String id);
@@ -32,4 +35,18 @@ public interface UserMapper {
      * @return
      */
     int activate(String id);
+
+    /**
+     * 按条件分页查询
+     * @param map
+     * @return
+     */
+    List<User> querySelective(Map<Object,Object> map);
+
+    /**
+     * 获取符合条件的所有信息
+     * @param map
+     * @return
+     */
+    List<User> queryForSize(Map<Object,Object> map);
 }
