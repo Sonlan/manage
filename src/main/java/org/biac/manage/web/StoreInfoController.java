@@ -17,7 +17,7 @@ import java.io.IOException;
  * Created by Song on 2016/7/15.
  */
 @Controller
-@RequestMapping(value = "/storeinfo")
+@RequestMapping(value = "/store")
 public class StoreInfoController {
     @Autowired
     private StoreInfoService storeInfoService;
