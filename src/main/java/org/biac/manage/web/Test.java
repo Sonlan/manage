@@ -34,4 +34,12 @@ public class Test {
             System.out.println(str);
         }
     }
+
+    @RequestMapping(value = "/toobj2")
+    public void toobj2 (@RequestParam String data) throws IOException{
+        String [] list = data.split(",");
+        for (String str:list) {
+            System.out.println(str);
+        }
+    }
 }

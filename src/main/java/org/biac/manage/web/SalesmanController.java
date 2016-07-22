@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 推销员业务管理
@@ -25,44 +27,65 @@ public class SalesmanController {
 
     /**
      * 推销员用户挂起
-     * @param id
+     * @param ids
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "/suspend")
-    public void suspend(@RequestParam String id,HttpServletResponse response) throws IOException{
+    public void suspend(@RequestParam String ids,HttpServletResponse response) throws IOException{
         response.setContentType("application/json;charset=utf-8");
-        if(0==salesmanService.suspend(id)){
-            response.getWriter().write(JsonUtil.statusResponse(0,"挂起成功",null));
-        }else response.getWriter().write(JsonUtil.statusResponse(0,"挂起异常",null));
+        int errorCode = 0;
+        List<String> erroMsg = new ArrayList<String>();
+        String [] list = ids.split(",");
+        for (String id:list) {
+            if(0!=salesmanService.suspend(id)){
+                erroMsg.add(id+":推销员用户挂起异常");
+                errorCode = 1;
+            }
+        }
+        response.getWriter().write(JsonUtil.statusResponse(errorCode,erroMsg.toString(),null));
     }
 
     /**
      * 推销员用户恢复，与挂起对应
-     * @param id
+     * @param ids
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "/activate")
-    public void activate(@RequestParam String id,HttpServletResponse response) throws IOException{
+    public void activate(@RequestParam String ids,HttpServletResponse response) throws IOException{
         response.setContentType("application/json;charset=utf-8");
-        if(0==salesmanService.activate(id)){
-            response.getWriter().write(JsonUtil.statusResponse(0,"恢复成功",null));
-        }else response.getWriter().write(JsonUtil.statusResponse(0,"恢复异常",null));
+        int errorCode = 0;
+        List<String> erroMsg = new ArrayList<String>();
+        String [] list = ids.split(",");
+        for (String id:list) {
+            if(0!=salesmanService.activate(id)){
+                erroMsg.add(id+":推销员用户恢复异常");
+                errorCode = 1;
+            }
+        }
+        response.getWriter().write(JsonUtil.statusResponse(errorCode,erroMsg.toString(),null));
     }
 
     /**
      * 删除用户
-     * @param id
+     * @param ids
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "/delete.do")
-    public void delete(@RequestParam String id,HttpServletResponse response) throws IOException{
+    public void delete(@RequestParam String ids,HttpServletResponse response) throws IOException{
         response.setContentType("application/json;charset=utf-8");
-        if(0==salesmanService.delete(id)){
-            response.getWriter().write(JsonUtil.statusResponse(0,"删除成功",null));
-        }else response.getWriter().write(JsonUtil.statusResponse(0,"删除异常",null));
+        int errorCode = 0;
+        List<String> erroMsg = new ArrayList<String>();
+        String [] list = ids.split(",");
+        for (String id:list) {
+            if(0!=salesmanService.delete(id)){
+                erroMsg.add(id+":删除异常");
+                errorCode = 1;
+            }
+        }
+        response.getWriter().write(JsonUtil.statusResponse(errorCode,erroMsg.toString(),null));
     }
 
     /**

@@ -56,10 +56,10 @@ public class AgentController {
         response.setContentType("application/json;charset=utf-8");
         int errorCode = 0;
         List<String> erroMsg = new ArrayList<String>();
-        List<String> list = JsonUtil.toObject(ids,List.class);
+        String [] list = ids.split(",");
         for (String id:list) {
             if(0!=agentService.suspend(id)){
-                erroMsg.add(id+": 挂起异常");
+                erroMsg.add(id+":经销商用户挂起异常");
                 errorCode = 1;
             }
         }
@@ -77,10 +77,10 @@ public class AgentController {
         response.setContentType("application/json;charset=utf-8");
         int errorCode = 0;
         List<String> erroMsg = new ArrayList<String>();
-        List<String> list = JsonUtil.toObject(ids,List.class);
+        String [] list = ids.split(",");
         for (String id:list) {
             if(0!=agentService.activate(id)){
-                erroMsg.add(id+": 恢复异常");
+                erroMsg.add(id+":经销商用户恢复异常");
                 errorCode = 1;
             }
         }
@@ -98,10 +98,10 @@ public class AgentController {
         response.setContentType("application/json;charset=utf-8");
         int errorCode = 0;
         List<String> erroMsg = new ArrayList<String>();
-        List<String> list = JsonUtil.toObject(ids,List.class);
+        String [] list = ids.split(",");
         for (String id:list) {
             if(0!=agentService.delete(id)){
-                erroMsg.add(id+": 删除异常");
+                erroMsg.add(id+":经销商用户删除异常");
                 errorCode = 1;
             }
         }

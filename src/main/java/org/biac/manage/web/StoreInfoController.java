@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 经销点信息业务管理
@@ -24,16 +26,23 @@ public class StoreInfoController {
 
     /**
      * 经销点信息删除
-     * @param id
+     * @param ids
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "/delete.do")
-    public void delete(@RequestParam String id, HttpServletResponse response) throws IOException {
+    public void delete(@RequestParam String ids, HttpServletResponse response) throws IOException {
         response.setContentType("application/json;charset=utf-8");
-        if(0==storeInfoService.delete(id)){
-            response.getWriter().write(JsonUtil.statusResponse(0,"删除成功",null));
-        }else response.getWriter().write(JsonUtil.statusResponse(0,"删除异常",null));
+        int errorCode = 0;
+        List<String> erroMsg = new ArrayList<String>();
+        String [] list = ids.split(",");
+        for (String id:list) {
+            if(0!=storeInfoService.delete(id)){
+                erroMsg.add(id+":经销点删除异常");
+                errorCode = 1;
+            }
+        }
+        response.getWriter().write(JsonUtil.statusResponse(errorCode,erroMsg.toString(),null));
     }
 
     /**
@@ -77,7 +86,7 @@ public class StoreInfoController {
         String area_code = request.getParameter("area_code");
         int length = storeInfoService.queryForSize(name,range,area_code);
         if(0==length){
-            response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据",null));
+            response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据 ",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,length,storeInfoService.query(name,range,area_code,page)));
     }
 }
