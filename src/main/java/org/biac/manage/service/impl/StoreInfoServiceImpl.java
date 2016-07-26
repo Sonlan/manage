@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,7 @@ public class StoreInfoServiceImpl implements StoreInfoService{
      * @param storeInfo
      * @return
      */
-    public int add(StoreInfo storeInfo) {
+    public int add(StoreInfo storeInfo){
         try{
             storeInfoDao.insertSelective(storeInfo);
             return  0;
@@ -114,5 +115,12 @@ public class StoreInfoServiceImpl implements StoreInfoService{
             logger.error(this.getClass().toString()+"经销点信息数目获取异常");
             return  0;
         }
+    }
+
+    public int test() {
+        StoreInfo storeInfo = new StoreInfo();
+        storeInfo.setName("test1");
+        storeInfoDao.insertSelective(storeInfo);
+        throw new RuntimeException("test storeinfo");
     }
 }

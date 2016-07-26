@@ -58,4 +58,6 @@ public interface UserService {
      * @return
      */
     int queryForSize(String nickname);
+
+    int test();
 }

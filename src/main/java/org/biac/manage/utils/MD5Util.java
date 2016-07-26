@@ -1,6 +1,9 @@
 package org.biac.manage.utils;
 
+import com.sun.xml.internal.fastinfoset.util.CharArray;
+
 import java.security.MessageDigest;
+import java.util.List;
 
 public class MD5Util {
     public final static String MD5(String s) {
@@ -29,12 +32,24 @@ public class MD5Util {
         }
     }
     //对md5编码后的密码做按规则进一步编码
-    public static String compile(String str){
+    public static String encode(String str){
         String key = "0123456789ABCDEF";
         char [] key_swap = {'B', '1', '5', '4', 'E', '7', '6', '2', 'F', '9', 'A', '3', 'C', 'D', '8', '0'};
         String result="";
         for (char c:str.toCharArray()) {
             result+=key_swap[key.indexOf(c+"")];
+        }
+        return result;
+    }
+
+    //对encode方法编码的字符串进行解密
+    public static String decode(String str){
+        String key = "0123456789ABCDEF";
+        char [] key_swap = {'B', '1', '5', '4', 'E', '7', '6', '2', 'F', '9', 'A', '3', 'C', 'D', '8', '0'};
+        String index = "B154E762F9A3CD80";
+        String result="";
+        for (char c:str.toCharArray()) {
+            result+=key.charAt(index.indexOf(c+""));
         }
         return result;
     }

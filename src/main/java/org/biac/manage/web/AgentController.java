@@ -4,7 +4,10 @@ import org.biac.manage.entity.Agent;
 import org.biac.manage.service.AgentService;
 import org.biac.manage.utils.JsonUtil;
 import org.biac.manage.utils.MD5Util;
+import org.biac.manage.utils.QRCode;
+import org.biac.manage.utils.SystemUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.parsing.EmptyReaderEventListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -138,5 +143,34 @@ public class AgentController {
         if(0==length){
             response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,length,agentService.query(name,range,area_code,page)));
+    }
+
+    @RequestMapping(value = "register")
+    public void register(@RequestParam String key,HttpServletRequest request,HttpServletResponse response) throws IOException{
+        response.setContentType("application/json;charset=utf-8");
+        key = MD5Util.encode(new Date().getTime()+"");
+        long  timeLimit;
+        try{
+            timeLimit = 60000* Long.parseLong(SystemUtil.getProperty("timeLimit"));
+        }catch (Exception e){
+            timeLimit = 1200000;  //默认20分钟
+        }
+//        String s1 = MD5Util.encode(key);
+        try{
+            if(timeLimit <= new Date().getTime()-Long.parseLong(MD5Util.decode(key))){//超时
+                response.getWriter().write(JsonUtil.statusResponse(1,"注册链接已失效",null));
+                return;
+            }else{//正常注册流程
+                response.setContentType("image/jpg");
+                byte [] image = QRCode.encode("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa76ca32f306d7277&redirect_uri=http://1u5186s163.51mypc.cn/sales/user/toIndex&response_type=code&scope=snsapi_userinfo&state=a13#wechat_redirect",250,250,"jpg");
+                OutputStream out = response.getOutputStream();
+                out.write(image);
+                out.flush();
+                out.close();
+            }
+        }catch (Exception e){
+            response.getWriter().write(JsonUtil.statusResponse(1,"无效链接",null));
+            return;
+        }
     }
 }

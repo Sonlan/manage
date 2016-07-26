@@ -144,4 +144,10 @@ public class UserServiceImpl implements UserService{
             return  0;
         }
     }
+
+    public int test() {
+        User user = new User("openid", "test",0, "test1");
+        userDao.insert(user);
+        throw new RuntimeException("test user");
+    }
 }

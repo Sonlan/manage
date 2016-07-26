@@ -48,5 +48,7 @@ public interface StoreInfoService {
      */
     int queryForSize(String name,String range,String area_code);
 
+    int test();
+
 }
 

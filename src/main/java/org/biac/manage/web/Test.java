@@ -1,8 +1,12 @@
 package org.biac.manage.web;
 
+import org.biac.manage.entity.StoreInfo;
+import org.biac.manage.service.StoreInfoService;
 import org.biac.manage.utils.JsonUtil;
 import org.biac.manage.utils.MailUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,6 +20,8 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/test")
 public class Test {
+    @Autowired
+    private StoreInfoService storeInfoService;
     @RequestMapping(value = "/mail")
     public void mail(){
         MailUtil.sendEmail("1147649695@qq.com","激活测试邮件","<a href='www.baidu.com'>点击激活</a>");
@@ -41,5 +47,19 @@ public class Test {
         for (String str:list) {
             System.out.println(str);
         }
+    }
+    @RequestMapping(value = "/transac")
+    public void transac () throws IOException{
+        try{
+            if(0!= test())  System.out.println("ERROR");
+            else System.out.println("GET");
+        }catch (Exception e){
+            System.out.println("ERROR");
+        }
+    }
+    @Transactional(rollbackFor = Exception.class)
+    private int test(){
+        storeInfoService.test();
+        return  0;
     }
 }
