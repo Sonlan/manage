@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.biac.manage.dao.AgentMapper" >
-  <resultMap id="BaseResultMap" type="org.biac.manage.entity.Agent" >
+<mapper namespace="org.biacbiac.manage.dao.AgentMapper" >
+  <resultMap id="BaseResultMap" type="org.biacbiac.manage.entity.Agent" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="store_id" property="storeId" jdbcType="BIGINT" />
     <result column="account" property="account" jdbcType="VARCHAR" />
@@ -23,6 +23,12 @@
     <include refid="Base_Column_List" />
     from tbl_agent
     where account = #{account,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByMail" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_agent
+    where mail = #{mail,jdbcType=VARCHAR}
   </select>
     <select id="login" resultMap="BaseResultMap" parameterType="java.util.Map" >
         select
@@ -101,7 +107,7 @@
     status = 0
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <insert id="insert" parameterType="org.biac.manage.entity.Agent" >
+  <insert id="insert" parameterType="org.biacbiac.manage.entity.Agent" >
     insert into tbl_agent (id, store_id, account, 
       password, tel, mail, 
       nickname, openid, status, 
@@ -111,12 +117,9 @@
       #{nickname,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
       #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="org.biac.manage.entity.Agent" >
+  <insert id="insertSelective" parameterType="org.biacbiac.manage.entity.Agent" >
     insert into tbl_agent
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="storeId != null" >
         store_id,
       </if>
@@ -141,17 +144,8 @@
       <if test="status != null" >
         status,
       </if>
-      <if test="createDate != null" >
-        create_date,
-      </if>
-      <if test="updateDate != null" >
-        update_date,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="storeId != null" >
         #{storeId,jdbcType=BIGINT},
       </if>
@@ -175,12 +169,6 @@
       </if>
       <if test="status != null" >
         #{status,jdbcType=TINYINT},
-      </if>
-      <if test="createDate != null" >
-        #{createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateDate != null" >
-        #{updateDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -226,7 +214,7 @@
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
       update_date = #{record.updateDate,jdbcType=TIMESTAMP}
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.biac.manage.entity.Agent" >
+  <update id="updateByPrimaryKeySelective" parameterType="org.biacbiac.manage.entity.Agent" >
     update tbl_agent
     <set >
       <if test="storeId != null" >
@@ -262,7 +250,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.biac.manage.entity.Agent" >
+  <update id="updateByPrimaryKey" parameterType="org.biacbiac.manage.entity.Agent" >
     update tbl_agent
     set store_id = #{storeId,jdbcType=BIGINT},
       account = #{account,jdbcType=VARCHAR},

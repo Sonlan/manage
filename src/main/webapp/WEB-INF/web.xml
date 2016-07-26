@@ -2,6 +2,10 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
     <display-name>manage</display-name>
     <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value> manage.root </param-value>
+    </context-param>
+    <context-param>
         <param-name>logbackConfigLocation</param-name>
         <param-value>classpath:config/logback.xml</param-value> <!-- classpath是指 WEB-INF文件夹下的classes目录  -->
     </context-param>
@@ -33,7 +37,7 @@
     </filter>
     <filter>
         <filter-name>AuthorityFilter</filter-name>
-        <filter-class>org.biac.manage.web.AuthorityFilter</filter-class>
+        <filter-class>org.biacbiac.manage.web.AuthorityFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AuthorityFilter</filter-name>

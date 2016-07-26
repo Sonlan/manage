@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.biac.manage.dao.ProductItemMapper" >
-  <resultMap id="BaseResultMap" type="org.biac.manage.entity.ProductItem" >
+<mapper namespace="org.biacbiac.manage.dao.ProductItemMapper" >
+  <resultMap id="BaseResultMap" type="org.biacbiac.manage.entity.ProductItem" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
@@ -52,7 +52,7 @@
     delete from tbl_product_list
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.biac.manage.entity.ProductItem" >
+  <insert id="insert" parameterType="org.biacbiac.manage.entity.ProductItem" >
     insert into tbl_product_list (id, name, description, 
       producer, origin, price, 
       exp_date, url, box_cnt, 
@@ -62,7 +62,7 @@
       #{expDate,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{boxCnt,jdbcType=INTEGER}, 
       #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="org.biac.manage.entity.ProductItem" >
+  <insert id="insertSelective" parameterType="org.biacbiac.manage.entity.ProductItem" >
     insert into tbl_product_list
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -123,7 +123,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="org.biac.manage.entity.ProductItem" >
+  <update id="updateByIdSelective" parameterType="org.biacbiac.manage.entity.ProductItem" >
     update tbl_product_list
     <set >
       <if test="name != null" >
@@ -168,7 +168,7 @@
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
       update_date = #{record.updateDate,jdbcType=TIMESTAMP}
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.biac.manage.entity.ProductItem" >
+  <update id="updateByPrimaryKeySelective" parameterType="org.biacbiac.manage.entity.ProductItem" >
     update tbl_product_list
     <set >
       <if test="name != null" >
@@ -204,7 +204,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.biac.manage.entity.ProductItem" >
+  <update id="updateByPrimaryKey" parameterType="org.biacbiac.manage.entity.ProductItem" >
     update tbl_product_list
     set name = #{name,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},

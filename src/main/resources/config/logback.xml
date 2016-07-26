@@ -52,7 +52,7 @@
     </appender>
     
 	<!-- project default level -->
-	<logger name="org.biac.manage" level="DEBUG" />
+	<logger name="org.biacbiac.manage" level="DEBUG" />
     
 	<!--log4jdbc -->
 	<logger name="jdbc.sqltiming" level="DEBUG"/>

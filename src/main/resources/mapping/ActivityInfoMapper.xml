@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.biac.manage.dao.ActivityInfoMapper" >
-  <resultMap id="BaseResultMap" type="org.biac.manage.entity.ActivityInfo" >
+<mapper namespace="org.biacbiac.manage.dao.ActivityInfoMapper" >
+  <resultMap id="BaseResultMap" type="org.biacbiac.manage.entity.ActivityInfo" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="activity_id" property="activityId" jdbcType="BIGINT" />
     <result column="theme" property="theme" jdbcType="VARCHAR" />
@@ -21,7 +21,7 @@
     from tbl_activity_info
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="querySelective" resultType="org.biac.manage.entity.ActivityInfo" parameterType="java.util.Map">
+  <select id="querySelective" resultType="org.biacbiac.manage.entity.ActivityInfo" parameterType="java.util.Map">
     select
     <include refid="Base_Column_List" />
     from tbl_activity_info
@@ -37,7 +37,7 @@
     ORDER BY create_date DESC
     limit #{page_start},#{page_end}
   </select>
-  <select id="queryForSize" resultType="org.biac.manage.entity.ActivityInfo" parameterType="java.util.Map">
+  <select id="queryForSize" resultType="org.biacbiac.manage.entity.ActivityInfo" parameterType="java.util.Map">
         select
         <include refid="Base_Column_List" />
         from tbl_activity_info
@@ -55,7 +55,7 @@
     delete from tbl_activity_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.biac.manage.entity.ActivityInfo" >
+  <insert id="insert" parameterType="org.biacbiac.manage.entity.ActivityInfo" >
     insert into tbl_activity_info (id, activity_id, theme, 
       bonus, start_date, end_date, 
       description, status, create_date
@@ -65,7 +65,7 @@
       #{description,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.biac.manage.entity.ActivityInfo" >
+  <insert id="insertSelective" parameterType="org.biacbiac.manage.entity.ActivityInfo" >
     insert into tbl_activity_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="activityId != null" >
@@ -114,7 +114,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByIdSelective" parameterType="org.biac.manage.entity.ActivityInfo" >
+  <update id="updateByIdSelective" parameterType="org.biacbiac.manage.entity.ActivityInfo" >
     update tbl_activity_info
     <set >
       <if test="activityId != null" >
@@ -153,7 +153,7 @@
       status = #{record.status,jdbcType=TINYINT},
       create_date = #{record.createDate,jdbcType=TIMESTAMP}
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.biac.manage.entity.ActivityInfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="org.biacbiac.manage.entity.ActivityInfo" >
     update tbl_activity_info
     <set >
       <if test="activityId != null" >
@@ -183,7 +183,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.biac.manage.entity.ActivityInfo" >
+  <update id="updateByPrimaryKey" parameterType="org.biacbiac.manage.entity.ActivityInfo" >
     update tbl_activity_info
     set activity_id = #{activityId,jdbcType=BIGINT},
       theme = #{theme,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.biac.manage.dao.CompanyUserMapper" >
-  <resultMap id="BaseResultMap" type="org.biac.manage.entity.CompanyUser" >
+<mapper namespace="org.biacbiac.manage.dao.CompanyUserMapper" >
+  <resultMap id="BaseResultMap" type="org.biacbiac.manage.entity.CompanyUser" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -86,7 +86,7 @@
     delete from tbl_company_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.biac.manage.entity.CompanyUser" >
+  <insert id="insert" parameterType="org.biacbiac.manage.entity.CompanyUser" >
     insert into tbl_company_user (id, account, password, 
       authority, status, create_date
       )
@@ -94,7 +94,7 @@
       #{authority,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.biac.manage.entity.CompanyUser" >
+  <insert id="insertSelective" parameterType="org.biacbiac.manage.entity.CompanyUser" >
     insert into tbl_company_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -161,7 +161,7 @@
       status = #{record.status,jdbcType=TINYINT},
       create_date = #{record.createDate,jdbcType=TIMESTAMP}
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.biac.manage.entity.CompanyUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="org.biacbiac.manage.entity.CompanyUser" >
     update tbl_company_user
     <set >
       <if test="account != null" >
@@ -182,7 +182,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.biac.manage.entity.CompanyUser" >
+  <update id="updateByPrimaryKey" parameterType="org.biacbiac.manage.entity.CompanyUser" >
     update tbl_company_user
     set account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

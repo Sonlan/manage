@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.biac.manage.dao.SalesmanMapper" >
-  <resultMap id="BaseResultMap" type="org.biac.manage.entity.Salesman" >
+<mapper namespace="org.biacbiac.manage.dao.SalesmanMapper" >
+  <resultMap id="BaseResultMap" type="org.biacbiac.manage.entity.Salesman" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="store_id" property="storeId" jdbcType="BIGINT" />
     <result column="work_id" property="workId" jdbcType="VARCHAR" />
@@ -72,7 +72,7 @@
     status = 0
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <insert id="insert" parameterType="org.biac.manage.entity.Salesman" >
+  <insert id="insert" parameterType="org.biacbiac.manage.entity.Salesman" >
     insert into tbl_salesman (id, work_id, name, 
       nickname, openid, status, 
       create_date)
@@ -80,7 +80,7 @@
       #{nickname,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
       #{createDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="org.biac.manage.entity.Salesman" >
+  <insert id="insertSelective" parameterType="org.biacbiac.manage.entity.Salesman" >
     insert into tbl_salesman
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -160,7 +160,7 @@
       status = #{record.status,jdbcType=TINYINT},
       create_date = #{record.createDate,jdbcType=TIMESTAMP}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.biac.manage.entity.Salesman" >
+  <update id="updateByPrimaryKey" parameterType="org.biacbiac.manage.entity.Salesman" >
     update tbl_salesman
     set work_id = #{workId,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
