@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.biacbiac.manage.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="org.biacbiac.manage.entity.User" >
+<mapper namespace="org.biac.manage.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="org.biac.manage.entity.User" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <id column="openid" property="openid" jdbcType="VARCHAR" />
     <result column="nickname" property="nickname" jdbcType="VARCHAR" />
@@ -65,12 +65,12 @@
     delete from TBL_USER
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.biacbiac.manage.entity.User" >
+  <insert id="insert" parameterType="org.biac.manage.entity.User" >
     insert into TBL_USER (openid, nickname, sex, headimgurl,status)
     values ( #{openid,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
       #{sex,jdbcType=TINYINT}, #{headimgurl,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="org.biacbiac.manage.entity.User" >
+  <insert id="insertSelective" parameterType="org.biac.manage.entity.User" >
     insert into TBL_USER
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="openid != null" >
@@ -124,7 +124,7 @@
       status = #{record.status,jdbcType=TINYINT}
       WHERE id = #{record.id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.biacbiac.manage.entity.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="org.biac.manage.entity.User" >
     update TBL_USER
     <set >
       <if test="openid != null" >
@@ -148,7 +148,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByOpenid" parameterType="org.biacbiac.manage.entity.User" >
+  <update id="updateByOpenid" parameterType="org.biac.manage.entity.User" >
     update TBL_USER
     set
       nickname = #{nickname,jdbcType=VARCHAR},

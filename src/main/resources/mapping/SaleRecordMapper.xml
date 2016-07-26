@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.biacbiac.manage.dao.SaleRecordMapper" >
-  <resultMap id="BaseResultMap" type="org.biacbiac.manage.entity.SaleRecord" >
+<mapper namespace="org.biac.manage.dao.SaleRecordMapper" >
+  <resultMap id="BaseResultMap" type="org.biac.manage.entity.SaleRecord" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="code" property="code" jdbcType="BIGINT" />
     <result column="openid" property="openid" jdbcType="VARCHAR" />
@@ -57,13 +57,13 @@
     delete from tbl_sale_record
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.biacbiac.manage.entity.SaleRecord" >
+  <insert id="insert" parameterType="org.biac.manage.entity.SaleRecord" >
     insert into tbl_sale_record (id, code, openid, 
       address, create_time)
     values (#{id,jdbcType=BIGINT}, #{code,jdbcType=BIGINT}, #{openid,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="org.biacbiac.manage.entity.SaleRecord" >
+  <insert id="insertSelective" parameterType="org.biac.manage.entity.SaleRecord" >
     insert into tbl_sale_record
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -128,7 +128,7 @@
       address = #{record.address,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP}
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.biacbiac.manage.entity.SaleRecord" >
+  <update id="updateByPrimaryKeySelective" parameterType="org.biac.manage.entity.SaleRecord" >
     update tbl_sale_record
     <set >
       <if test="code != null" >
@@ -146,7 +146,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.biacbiac.manage.entity.SaleRecord" >
+  <update id="updateByPrimaryKey" parameterType="org.biac.manage.entity.SaleRecord" >
     update tbl_sale_record
     set code = #{code,jdbcType=BIGINT},
       openid = #{openid,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.biacbiac.manage.dao.ProductCodeMapper" >
-  <resultMap id="BaseResultMap" type="org.biacbiac.manage.entity.ProductCode" >
+<mapper namespace="org.biac.manage.dao.ProductCodeMapper" >
+  <resultMap id="BaseResultMap" type="org.biac.manage.entity.ProductCode" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="key" property="key" jdbcType="BIGINT" />
     <result column="product_id" property="productId" jdbcType="BIGINT" />
@@ -22,7 +22,7 @@
     delete from tbl_product_code
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.biacbiac.manage.entity.ProductCode" >
+  <insert id="insert" parameterType="org.biac.manage.entity.ProductCode" >
     insert into tbl_product_code (id, key, product_id, 
       consumer_flag, agent_flag, create_date
       )
@@ -30,7 +30,7 @@
       #{consumerFlag,jdbcType=TINYINT}, #{agentFlag,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.biacbiac.manage.entity.ProductCode" >
+  <insert id="insertSelective" parameterType="org.biac.manage.entity.ProductCode" >
     insert into tbl_product_code
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -105,7 +105,7 @@
       agent_flag = #{record.agentFlag,jdbcType=TINYINT},
       create_date = #{record.createDate,jdbcType=TIMESTAMP}
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.biacbiac.manage.entity.ProductCode" >
+  <update id="updateByPrimaryKeySelective" parameterType="org.biac.manage.entity.ProductCode" >
     update tbl_product_code
     <set >
       <if test="key != null" >
@@ -126,7 +126,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.biacbiac.manage.entity.ProductCode" >
+  <update id="updateByPrimaryKey" parameterType="org.biac.manage.entity.ProductCode" >
     update tbl_product_code
     set key = #{key,jdbcType=BIGINT},
       product_id = #{productId,jdbcType=BIGINT},
