@@ -72,4 +72,12 @@ public interface AgentMapper {
     List<Agent> queryForSize(Map<Object,Object> map);
 
     int insertSelective(Agent agent);
+
+    /**
+     * 根据account以及mail检查用户是否重复
+     * @param map
+     * @return
+     */
+    List<Agent> check(Map<Object,Object> map);
+
 }

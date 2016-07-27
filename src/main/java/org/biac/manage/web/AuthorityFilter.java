@@ -20,7 +20,7 @@ public class AuthorityFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         response.setContentType("application/json;charset=utf-8");
-        try{
+/*        try{
             int identity = (Integer)request.getSession().getAttribute("_IDENTITY");
             switch (identity) {
                 case 0: {//经销商
@@ -40,7 +40,8 @@ public class AuthorityFilter implements Filter {
         }catch (Exception e){
             e.printStackTrace();
             resp.getWriter().write(JsonUtil.statusResponse(0,"您无此操作权限",null));
-        }
+        }*/
+        chain.doFilter(req,resp);
 
     }
 

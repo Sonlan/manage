@@ -2,6 +2,7 @@ package org.biac.manage.service.impl;
 
 import org.biac.manage.dao.AgentMapper;
 import org.biac.manage.entity.Agent;
+import org.biac.manage.entity.User;
 import org.biac.manage.service.AgentService;
 import org.biac.manage.utils.MD5Util;
 import org.slf4j.Logger;
@@ -171,17 +172,23 @@ public class AgentServiceImpl implements AgentService{
      */
     public int regist(String account, String password, String storeId, String tel, String mail) {
         try{
-            Agent agent = new Agent();
-            agent.setAccount(account);
-            agent.setPassword(password);
-            agent.setStoreId(Integer.parseInt(storeId));
-            agent.setTel(tel);
-            agent.setMail(mail);
-            agentDao.insertSelective(agent);
-            return 0;
+            Map<Object,Object> map = new HashMap<Object, Object>();
+            map.put("account",account);
+            map.put("mail",mail);
+            List<Agent> list = agentDao.check(map);
+            if(null ==list || 0== list.size() ){
+                Agent agent = new Agent();
+                agent.setAccount(account);
+                agent.setPassword(password);
+                agent.setStoreId(Integer.parseInt(storeId));
+                agent.setTel(tel);
+                agent.setMail(mail);
+                agentDao.insertSelective(agent);
+                return 0;
+            }else return 1;
         }catch (Exception e){
             e.printStackTrace();
-            return 1;
+            return 2;
         }
     }
 
@@ -196,7 +203,7 @@ public class AgentServiceImpl implements AgentService{
         try{
             Agent agent = agentDao.selectByMail(mail);
             if(null == agent) return 1;
-            else if(0!=agent.getStatus()) return 2;
+            else if(0==agent.getStatus()) return 2;
             else if(!key.equals(MD5Util.encode(MD5Util.MD5(agent.getAccount())))) return 1;
             else{
                 agentDao.activate(agent.getId()+"");
@@ -205,6 +212,33 @@ public class AgentServiceImpl implements AgentService{
         }catch (Exception e){
             e.printStackTrace();
             return 3;
+        }
+    }
+
+    /**
+     * 微信绑定
+     *
+     * @param key
+     * @param mail
+     * @param user
+     * @return
+     */
+    public int bind(String key, String mail, User user) {
+        try{
+            Agent agent = agentDao.selectByMail(mail);
+            if(null == agent) return 1;
+            else if(!key.equals(MD5Util.encode(MD5Util.MD5(agent.getAccount())))) return 1;
+            else{
+                Map<Object,Object> map = new HashMap<Object, Object>();
+                agent.setNickname(user.getNickname());
+                agent.setOpenid(user.getOpenid());
+                map.put("record",agent);
+                agentDao.updateSelective(map);
+            }
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 2;
         }
     }
 }

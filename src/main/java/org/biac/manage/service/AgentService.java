@@ -2,6 +2,7 @@ package org.biac.manage.service;
 
 
 import org.biac.manage.entity.Agent;
+import org.biac.manage.entity.User;
 
 import java.util.List;
 
@@ -82,4 +83,13 @@ public interface AgentService {
      * @return
      */
     int regact(String key,String mail);
+
+    /**
+     * 微信绑定
+     * @param key
+     * @param mail
+     * @param user
+     * @return
+     */
+    int bind(String key, String mail, User user);
 }

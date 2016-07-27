@@ -69,10 +69,10 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateById" parameterType="org.biac.manage.entity.UserIdentity" >
+  <update id="updateByOpenId" parameterType="org.biac.manage.entity.UserIdentity" >
     update tbl_user_identity
-    set openid = #{openid,jdbcType=VARCHAR},
+    set
       identity = #{identity,jdbcType=TINYINT}
-    where id = #{id,jdbcType=BIGINT}
+    where openid = #{openid,jdbcType=VARCHAR}
   </update>
 </mapper>

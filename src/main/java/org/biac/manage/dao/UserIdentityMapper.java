@@ -18,5 +18,5 @@ public interface UserIdentityMapper {
 
     int updateByIdSelective(UserIdentity record);
 
-    int updateById(UserIdentity record);
+    int updateByOpenId(UserIdentity record);
 }
