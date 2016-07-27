@@ -28,7 +28,7 @@ public class UserIdentityServiceImpl implements UserIdentityService{
             UserIdentity userIdentity = userIdentityDao.selectByOpenid(identity.getOpenid());
             if(null == userIdentity)
                 userIdentityDao.insert(identity);
-            else userIdentityDao.updateByOpenId(userIdentity);
+            else userIdentityDao.updateByOpenId(identity);
             return  0;
         }catch (Exception e){
             logger.error(this.getClass().toString()+"新增用户身份信息失败");

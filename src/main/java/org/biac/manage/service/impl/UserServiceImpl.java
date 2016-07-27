@@ -112,11 +112,12 @@ public class UserServiceImpl implements UserService{
      * @param page
      * @return
      */
-    public List<User> query(String nickname, String page) {
+    public List<User> query(String nickname, String page,String status) {
         try{
             int pageNum = Integer.parseInt(page);
             Map<Object,Object> map = new HashMap<Object, Object>();
             map.put("nickname",nickname);
+            map.put("status",status);
             map.put("page_start",pageNum*10);
             map.put("page_end",pageNum*10+10);
             return userDao.querySelective(map);
@@ -133,10 +134,11 @@ public class UserServiceImpl implements UserService{
      * @param nickname
      * @return
      */
-    public int queryForSize(String nickname) {
+    public int queryForSize(String nickname,String status) {
         try{
             Map<Object,Object> map = new HashMap<Object, Object>();
             map.put("nickname",nickname);
+            map.put("status",status);
             return userDao.queryForSize(map).size();
         }catch (Exception e){
             e.printStackTrace();

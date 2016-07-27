@@ -60,4 +60,6 @@ public interface SalesmanMapper {
      * @return
      */
     List<Salesman> queryForSize(Map<Object,Object> map);
+
+    int insertSelective(Salesman salesman);
 }

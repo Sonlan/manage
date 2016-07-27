@@ -27,24 +27,39 @@ public class UserController {
      * 用户挂起
      * @throws IOException
      */
-    public void suspend(@RequestParam String id, HttpServletResponse response) throws IOException{
-        response.setContentType("application/json;charset=utf-8");
-        if(0==userService.suspend(id)){
-            response.getWriter().write(JsonUtil.statusResponse(0,"挂起成功",null));
-        }else response.getWriter().write(JsonUtil.statusResponse(0,"挂起异常",null));
+    @RequestMapping(value = "/suspend")
+    public void suspend(@RequestParam String ids, HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        int errorCode = 0;
+        List<String> erroMsg = new ArrayList<String>();
+        String [] list = ids.split(",");
+        for (String id:list) {
+            if(0!=userService.suspend(id)){
+                erroMsg.add(id+":普通用户挂起异常");
+                errorCode = 1;
+            }
+        }
+        response.getWriter().write(JsonUtil.statusResponse(errorCode,erroMsg.toString(),null));
     }
     /**
      * 消费者用户恢复，与挂起对应
-     * @param id
+     * @param ids
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "/activate")
-    public void activate(@RequestParam String id,HttpServletResponse response) throws IOException{
-        response.setContentType("application/json;charset=utf-8");
-        if(0==userService.activate(id)){
-            response.getWriter().write(JsonUtil.statusResponse(0,"恢复成功",null));
-        }else response.getWriter().write(JsonUtil.statusResponse(0,"恢复异常",null));
+    public void activate(@RequestParam String ids,HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        int errorCode = 0;
+        List<String> erroMsg = new ArrayList<String>();
+        String [] list = ids.split(",");
+        for (String id:list) {
+            if(0!=userService.activate(id)){
+                erroMsg.add(id+":普通用户恢复异常");
+                errorCode = 1;
+            }
+        }
+        response.getWriter().write(JsonUtil.statusResponse(errorCode,erroMsg.toString(),null));
     }
 
     /**
@@ -55,6 +70,7 @@ public class UserController {
      */
     @RequestMapping(value = "/delete.do")
     public void delete(@RequestParam String ids,HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         int errorCode = 0;
         List<String> erroMsg = new ArrayList<String>();
@@ -74,6 +90,7 @@ public class UserController {
      */
     @RequestMapping(value = "/edit.do")
     public void edit(User user, HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         if(0==userService.updateUser(user)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
@@ -82,11 +99,13 @@ public class UserController {
 
     @RequestMapping(value = "/query")
     public  void query(@RequestParam String page, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         String nickname = request.getParameter("nickname");  //微信昵称
-        int length = userService.queryForSize(nickname);
+        String status = request.getParameter("status");
+        int length = userService.queryForSize(nickname,status);
         if(0==length){
             response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据",null));
-        }else response.getWriter().write(JsonUtil.statusResponse(0,length,userService.query(nickname,page)));
+        }else response.getWriter().write(JsonUtil.statusResponse(0,length,userService.query(nickname,page,status)));
     }
 }

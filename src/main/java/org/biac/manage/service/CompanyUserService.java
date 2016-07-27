@@ -51,7 +51,7 @@ public interface CompanyUserService {
      * @param page
      * @return
      */
-    List<CompanyUser> query(String account,String authority,String page);
+    List<CompanyUser> query(String account,String authority,String page,String status);
 
     /**
      * 返回符合查询条件的记录数目
@@ -59,5 +59,5 @@ public interface CompanyUserService {
      * @param authority
      * @return
      */
-    int queryForSize(String account,String authority);
+    int queryForSize(String account,String authority,String status);
 }

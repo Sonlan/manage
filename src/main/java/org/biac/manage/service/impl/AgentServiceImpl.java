@@ -34,13 +34,14 @@ public class AgentServiceImpl implements AgentService{
      * @param page
      * @return
      */
-    public List<Agent> query(String name, String range, String area_code, String page) {
+    public List<Agent> query(String name, String range, String area_code, String page,String status) {
         try{
             int pageNum = Integer.parseInt(page);
             Map<Object,Object> map = new HashMap<Object, Object>();
             map.put("name",name);
             map.put("range",range);
             map.put("area_code",area_code);
+            map.put("status",status);
             map.put("page_start",pageNum*10);
             map.put("page_end",pageNum*10+10);
             return agentDao.querySelective(map);
@@ -60,12 +61,13 @@ public class AgentServiceImpl implements AgentService{
      * @param area_code
      * @return
      */
-    public int queryForSize(String name, String range, String area_code) {
+    public int queryForSize(String name, String range, String area_code,String status) {
         try{
             Map<Object,Object> map = new HashMap<Object, Object>();
             map.put("name",name);
             map.put("range",range);
             map.put("area_code",area_code);
+            map.put("status",status);
             return agentDao.queryForSize(map).size();
         }catch (Exception e){
             e.printStackTrace();

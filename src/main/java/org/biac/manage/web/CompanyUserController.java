@@ -28,6 +28,7 @@ public class CompanyUserController {
      */
     @RequestMapping(value = "/login")
     public void login(@RequestParam String account, @RequestParam String password, HttpServletResponse response, HttpServletRequest request) throws IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         try{
             CompanyUser companyUser = companyUserService.login(account,password);
@@ -52,6 +53,7 @@ public class CompanyUserController {
      */
     @RequestMapping(value = "/suspend")
     public void suspend(@RequestParam String ids,HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         int errorCode = 0;
         List<String> erroMsg = new ArrayList<String>();
@@ -73,6 +75,7 @@ public class CompanyUserController {
      */
     @RequestMapping(value = "/activate")
     public void activate(@RequestParam String ids,HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         int errorCode = 0;
         List<String> erroMsg = new ArrayList<String>();
@@ -94,6 +97,7 @@ public class CompanyUserController {
      */
     @RequestMapping(value = "/delete.do")
     public void delete(@RequestParam String ids,HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         int errorCode = 0;
         List<String> erroMsg = new ArrayList<String>();
@@ -109,12 +113,19 @@ public class CompanyUserController {
 
     /**
      * 用户编辑
-     * @param companyUser
      * @param response
      */
     @RequestMapping(value = "/edit.do")
-    public void edit(CompanyUser companyUser,HttpServletResponse response) throws IOException{
+    public void edit(@RequestParam String id,HttpServletRequest request,HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
+        String password = request.getParameter("password");
+        String authority = request.getParameter("authority");
+        String status = request.getParameter("status");
+        CompanyUser companyUser = new CompanyUser();
+        companyUser.setPassword(password);
+        companyUser.setAuthority(Integer.parseInt(authority));
+        companyUser.setStatus(Integer.parseInt(status));
         if(0==companyUserService.edit(companyUser)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"修改失败",null));
@@ -129,12 +140,14 @@ public class CompanyUserController {
      */
     @RequestMapping(value = "/query")
     public void query(@RequestParam String page,HttpServletRequest request,HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         String account = request.getParameter("account");
         String authority = request.getParameter("authority");
-        int length = companyUserService.queryForSize(account,authority);
+        String status =request.getParameter("status");
+        int length = companyUserService.queryForSize(account,authority,status);
         if(0==length){
             response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据",null));
-        }else response.getWriter().write(JsonUtil.statusResponse(0,length,companyUserService.query(account,authority,page)));
+        }else response.getWriter().write(JsonUtil.statusResponse(0,length,companyUserService.query(account,authority,page,status)));
     }
 }

@@ -64,6 +64,9 @@
       <if test="authority != null">
         and authority = #{authority,jdbcType=TINYINT}
       </if>
+      <if test="null != status">
+        and status = #{status,jdbcType=TINYINT}
+      </if>
     </where>
     ORDER BY create_date DESC
     limit ${page_start},${page_end}
@@ -79,6 +82,9 @@
       </if>
       <if test="authority != null">
         and authority = #{authority,jdbcType=TINYINT}
+      </if>
+      <if test="null != status">
+        and status = #{status,jdbcType=TINYINT}
       </if>
     </where>
   </select>

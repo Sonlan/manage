@@ -1,8 +1,11 @@
 package org.biac.manage.service.impl;
 
+import org.biac.manage.dao.AgentMapper;
 import org.biac.manage.dao.SalesmanMapper;
+import org.biac.manage.entity.Agent;
 import org.biac.manage.entity.Salesman;
 import org.biac.manage.service.SalesmanService;
+import org.biac.manage.utils.MD5Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,8 @@ import java.util.Map;
 public class SalesmanServiceImpl implements SalesmanService{
     @Autowired
     private SalesmanMapper salesmanDao;
+    @Autowired
+    private AgentMapper agentDao;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
@@ -134,6 +139,30 @@ public class SalesmanServiceImpl implements SalesmanService{
             e.printStackTrace();
             logger.error(this.getClass().toString()+"推销员信息数目获取异常");
             return  0;
+        }
+    }
+
+    /**
+     * 推销员注册
+     *
+     * @param key
+     * @param nickname
+     * @param openid
+     * @return
+     */
+    public int register(String key, String nickname, String openid,Agent agent) {
+        try{
+            if(!key.equals(MD5Util.encode(MD5Util.MD5(agent.getAccount())))) return 1; //无效操作
+            Salesman salesman = new Salesman();
+            salesman.setNickname(nickname);
+            salesman.setOpenid(openid);
+            salesman.setStatus(0);
+            salesman.setStoreId(agent.getStoreId());
+            salesmanDao.insertSelective(salesman);
+            return 0;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 2;
         }
     }
 }

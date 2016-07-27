@@ -31,6 +31,7 @@ public class SaleRecordController {
      */
     @RequestMapping(value = "/delete.do")
     public void delete(@RequestParam String ids, HttpServletResponse response) throws IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         int errorCode = 0;
         List<String> erroMsg = new ArrayList<String>();
@@ -53,6 +54,7 @@ public class SaleRecordController {
      */
     @RequestMapping(value = "/query")
     public  void query(@RequestParam String page, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         String nickname = request.getParameter("nickname");  //微信昵称
         String code = request.getParameter("status");  //消费码

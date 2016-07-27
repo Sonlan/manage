@@ -54,7 +54,7 @@ public interface AgentService {
      * @param page
      * @return
      */
-    List<Agent> query(String name,String range,String area_code,String page);
+    List<Agent> query(String name,String range,String area_code,String page,String status);
 
     /**
      * 查询符合条件的所有消息记录
@@ -63,7 +63,7 @@ public interface AgentService {
      * @param area_code
      * @return
      */
-    int queryForSize(String name,String range,String area_code);
+    int queryForSize(String name,String range,String area_code,String status);
 
     /**
      * 经销商用户注册

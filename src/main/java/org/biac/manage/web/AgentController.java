@@ -125,13 +125,23 @@ public class AgentController {
 
     /**
      * 用户编辑
-     * @param agent
      * @param response
      */
     @RequestMapping(value = "/edit.do")
-    public void edit(Agent agent,HttpServletResponse response) throws IOException{
+    public void edit(@RequestParam String id, HttpServletRequest request,HttpServletResponse response) throws IOException{
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
+        String storeId = request.getParameter("storeid");
+        String password = request.getParameter("password");
+        String tel = request.getParameter("tel");
+        String mail = request.getParameter("mail");
+
+        Agent agent = new Agent();
+        agent.setId(Long.parseLong(id));
+        agent.setStoreId(Integer.parseInt(storeId));
+        agent.setPassword(password);
+        agent.setTel(tel);
+        agent.setMail(mail);
         if(0==agentService.edit(agent)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"修改失败",null));
@@ -151,10 +161,11 @@ public class AgentController {
         String name = request.getParameter("name");
         String range = request.getParameter("range");
         String area_code = request.getParameter("area_code");
-        int length = agentService.queryForSize(name,range,area_code);
+        String status = request.getParameter("status");
+        int length = agentService.queryForSize(name,range,area_code,status);
         if(0==length){
             response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据",null));
-        }else response.getWriter().write(JsonUtil.statusResponse(0,length,agentService.query(name,range,area_code,page)));
+        }else response.getWriter().write(JsonUtil.statusResponse(0,length,agentService.query(name,range,area_code,page,status)));
     }
 
     /**
@@ -247,14 +258,11 @@ public class AgentController {
 
     /**
      * 微信账户绑定
-     * @param request
      * @param response
      * @throws Exception
      */
     @RequestMapping(value = "/bind")
-    public void bind(@RequestParam String code,/*@RequestParam String key,@RequestParam String mail,*/HttpServletRequest request,HttpServletResponse response) throws Exception {
-        String key = request.getParameter("key");
-        String mail = request.getParameter("mail");
+    public void bind(@RequestParam String code,@RequestParam String key,@RequestParam String mail,HttpServletResponse response) throws Exception {
         String APPID = SystemUtil.getProperty("APPID");
         String APPSECRET = SystemUtil.getProperty("APPSECRET");
         //获取accessToken

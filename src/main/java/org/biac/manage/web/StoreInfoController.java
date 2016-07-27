@@ -32,6 +32,7 @@ public class StoreInfoController {
      */
     @RequestMapping(value = "/delete.do")
     public void delete(@RequestParam String ids, HttpServletResponse response) throws IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         int errorCode = 0;
         List<String> erroMsg = new ArrayList<String>();
@@ -47,12 +48,23 @@ public class StoreInfoController {
 
     /**
      * 经销点信息编辑
-     * @param storeInfo
+     * @param id
      * @param response
      */
     @RequestMapping(value = "/edit.do")
-    public void edit(StoreInfo storeInfo, HttpServletResponse response) throws IOException{
+    public void edit(@RequestParam String id,HttpServletRequest request, HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
+        String name = request.getParameter("name");
+        String range = request.getParameter("range");
+        String area_code = request.getParameter("area_code");
+
+        StoreInfo storeInfo = new StoreInfo();
+        storeInfo.setId(Long.parseLong(id));
+        storeInfo.setName(name);
+        storeInfo.setRange(range);
+        storeInfo.setAreaCode(Integer.parseInt(area_code));
+
         if(0==storeInfoService.update(storeInfo)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"修改失败",null));
@@ -60,13 +72,22 @@ public class StoreInfoController {
 
     /**
      * 新增经销点信息
-     * @param storeInfo
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "/add.do")
-    public  void add(StoreInfo storeInfo,HttpServletResponse response) throws  IOException{
+    public  void add(HttpServletRequest request,HttpServletResponse response) throws  IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
+        String name = request.getParameter("name");
+        String range = request.getParameter("range");
+        String area_code = request.getParameter("area_code");
+
+        StoreInfo storeInfo = new StoreInfo();
+        storeInfo.setName(name);
+        storeInfo.setRange(range);
+        storeInfo.setAreaCode(Integer.parseInt(area_code));
+
         if(0==storeInfoService.add(storeInfo)){
             response.getWriter().write(JsonUtil.statusResponse(0,"新增成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"新增失败",null));
@@ -80,6 +101,7 @@ public class StoreInfoController {
      */
     @RequestMapping(value = "/query")
     public void query(@RequestParam String page, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         String name = request.getParameter("name");
         String range = request.getParameter("range");

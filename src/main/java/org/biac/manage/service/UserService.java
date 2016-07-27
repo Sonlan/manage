@@ -50,14 +50,14 @@ public interface UserService {
      * @param page
      * @return
      */
-    List<User> query(String nickname, String page);
+    List<User> query(String nickname, String page,String status);
 
     /**
      * 查询得到符合查询条件的消息总数
      * @param nickname
      * @return
      */
-    int queryForSize(String nickname);
+    int queryForSize(String nickname,String status);
 
     int test();
 }

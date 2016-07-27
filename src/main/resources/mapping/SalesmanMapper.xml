@@ -83,9 +83,6 @@
   <insert id="insertSelective" parameterType="org.biac.manage.entity.Salesman" >
     insert into tbl_salesman
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="workId != null" >
         work_id,
       </if>
@@ -101,14 +98,8 @@
       <if test="status != null" >
         status,
       </if>
-      <if test="createDate != null" >
-        create_date,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="workId != null" >
         #{workId,jdbcType=VARCHAR},
       </if>
@@ -123,9 +114,6 @@
       </if>
       <if test="status != null" >
         #{status,jdbcType=TINYINT},
-      </if>
-      <if test="createDate != null" >
-        #{createDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>

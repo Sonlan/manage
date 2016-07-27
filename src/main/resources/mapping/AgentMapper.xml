@@ -58,6 +58,9 @@
     from tbl_agent t1
     <where>
       1=1
+        <if test="null != status">
+            and status = #{status,jdbcType=TINYINT}
+        </if>
       and store_id in (
         SELECT id from tbl_store_info t2
         <where>
@@ -83,6 +86,9 @@
         from tbl_agent t1
         <where>
             1=1
+            <if test="null != status">
+                and status = #{status,jdbcType=TINYINT}
+            </if>
             and store_id in (
             SELECT id from tbl_store_info t2
             <where>

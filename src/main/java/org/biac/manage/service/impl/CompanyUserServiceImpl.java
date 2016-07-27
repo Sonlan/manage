@@ -114,12 +114,13 @@ public class CompanyUserServiceImpl implements CompanyUserService{
      * @param page
      * @return
      */
-    public List<CompanyUser> query(String account, String authority, String page) {
+    public List<CompanyUser> query(String account, String authority, String page,String status) {
         try{
             int pageNum = Integer.parseInt(page);
             Map<Object,Object> map = new HashMap<Object, Object>();
             map.put("account",account);
             map.put("authority",authority);
+            map.put("status",status);
             map.put("page_start",pageNum*10);
             map.put("page_end",pageNum*10+10);
             return companyUserDao.query(map);
@@ -137,11 +138,12 @@ public class CompanyUserServiceImpl implements CompanyUserService{
      * @param authority
      * @return
      */
-    public int queryForSize(String account, String authority) {
+    public int queryForSize(String account, String authority,String status) {
         try{
             Map<Object,Object> map = new HashMap<Object, Object>();
             map.put("account",account);
             map.put("authority",authority);
+            map.put("status",status);
             return companyUserDao.queryForSize(map).size();
         }catch (Exception e){
             e.printStackTrace();

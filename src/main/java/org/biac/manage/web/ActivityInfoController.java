@@ -31,6 +31,7 @@ public class ActivityInfoController {
      */
     @RequestMapping(value = "/delete.do")
     public void delete(@RequestParam String ids, HttpServletResponse response) throws IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         int errorCode = 0;
         List<String> erroMsg = new ArrayList<String>();
@@ -46,26 +47,57 @@ public class ActivityInfoController {
 
     /**
      * 活动信息编辑
-     * @param activityInfo
      * @param response
      */
     @RequestMapping(value = "/edit.do")
-    public void edit(ActivityInfo activityInfo, HttpServletResponse response) throws IOException{
+    public void edit(@RequestParam String id, HttpServletRequest request,HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
-        if(0==activityInfoService.update(activityInfo)){
+        String activity_id = request.getParameter("activity_id");
+        String theme = request.getParameter("theme");
+        String bonus = request.getParameter("bonus");
+        String start_date = request.getParameter("start_date");
+        String end_date = request.getParameter("end_date");
+        String description = request.getParameter("description");
+        String status = request.getParameter("status");
+        ActivityInfo activityInfo = new ActivityInfo();
+        activityInfo.setId(Long.parseLong(id));
+        activityInfo.setActivityId(Integer.parseInt(activity_id));
+        activityInfo.setTheme(theme);
+        activityInfo.setBonus(Integer.parseInt(bonus));
+        activityInfo.setStartDate(start_date);
+        activityInfo.setEndDate(end_date);
+        activityInfo.setDescription(description);
+        activityInfo.setStatus(Integer.parseInt(status));
+       if(0==activityInfoService.update(activityInfo)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"修改失败",null));
     }
 
     /**
      * 新增活动信息
-     * @param activityInfo
      * @param response
      * @throws IOException
      */
     @RequestMapping(value = "/add.do")
-    public  void add(ActivityInfo activityInfo,HttpServletResponse response) throws  IOException{
+    public  void add(HttpServletRequest request,HttpServletResponse response) throws  IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
+        String activity_id = request.getParameter("activity_id");
+        String theme = request.getParameter("theme");
+        String bonus = request.getParameter("bonus");
+        String start_date = request.getParameter("start_date");
+        String end_date = request.getParameter("end_date");
+        String description = request.getParameter("description");
+        String status = request.getParameter("status");
+        ActivityInfo activityInfo = new ActivityInfo();
+        activityInfo.setActivityId(Integer.parseInt(activity_id));
+        activityInfo.setTheme(theme);
+        activityInfo.setBonus(Integer.parseInt(bonus));
+        activityInfo.setStartDate(start_date);
+        activityInfo.setEndDate(end_date);
+        activityInfo.setDescription(description);
+        activityInfo.setStatus(Integer.parseInt(status));
         if(0==activityInfoService.add(activityInfo)){
             response.getWriter().write(JsonUtil.statusResponse(0,"新增成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"新增失败",null));
@@ -79,6 +111,7 @@ public class ActivityInfoController {
      */
     @RequestMapping(value = "/query")
     public void query(@RequestParam String page, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         String activity_id = request.getParameter("activity_id");
         String theme = request.getParameter("theme");

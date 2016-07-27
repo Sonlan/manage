@@ -1,5 +1,6 @@
 package org.biac.manage.service;
 
+import org.biac.manage.entity.Agent;
 import org.biac.manage.entity.Salesman;
 
 import java.util.List;
@@ -54,4 +55,13 @@ public interface SalesmanService {
      * @return
      */
     int queryForSize(long store_id,String name, String work_id, String status);
+
+    /**
+     * 推销员注册
+     * @param key
+     * @param nickname
+     * @param openid
+     * @return
+     */
+    int register(String key,String nickname,String openid,Agent agent);
 }
