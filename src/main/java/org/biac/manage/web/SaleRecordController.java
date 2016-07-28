@@ -57,7 +57,7 @@ public class SaleRecordController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         String nickname = request.getParameter("nickname");  //微信昵称
-        String code = request.getParameter("status");  //消费码
+        String code = request.getParameter("code");  //消费码
         int length = saleRecordService.queryForSize(nickname,code);
         if(0==length){
             response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据",null));

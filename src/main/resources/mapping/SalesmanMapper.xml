@@ -83,6 +83,9 @@
   <insert id="insertSelective" parameterType="org.biac.manage.entity.Salesman" >
     insert into tbl_salesman
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        store_id,
+      </if>
       <if test="workId != null" >
         work_id,
       </if>
@@ -100,6 +103,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        #{storeId,jdbcType=VARCHAR},
+      </if>
       <if test="workId != null" >
         #{workId,jdbcType=VARCHAR},
       </if>

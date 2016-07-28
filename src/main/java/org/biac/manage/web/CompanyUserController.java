@@ -27,13 +27,13 @@ public class CompanyUserController {
      * 登录
      */
     @RequestMapping(value = "/login")
-    public void login(@RequestParam String account, @RequestParam String password, HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public void login(@RequestParam String account, @RequestParam String password, HttpServletResponse response, HttpServletRequest  request) throws IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         try{
             CompanyUser companyUser = companyUserService.login(account,password);
             if(null != companyUser){
-                if(0 == companyUser.getStatus()) response.getWriter().write(JsonUtil.statusResponse(0,"该用户账户已被冻结，请联系管理员",null));
+                if(0 != companyUser.getStatus()) response.getWriter().write(JsonUtil.statusResponse(0,"该用户账户已被冻结，请联系管理员",null));
                 else {
                     request.getSession().setAttribute("_COMPANYUSER",companyUser);
                     request.getSession().setAttribute("_IDENTITY",1); //代表当前登录的是经销商
@@ -124,8 +124,10 @@ public class CompanyUserController {
         String status = request.getParameter("status");
         CompanyUser companyUser = new CompanyUser();
         companyUser.setPassword(password);
-        companyUser.setAuthority(Integer.parseInt(authority));
-        companyUser.setStatus(Integer.parseInt(status));
+        if(null != authority)
+            companyUser.setAuthority(Integer.parseInt(authority));
+        if(null != status)
+            companyUser.setStatus(Integer.parseInt(status));
         if(0==companyUserService.edit(companyUser)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,"修改失败",null));

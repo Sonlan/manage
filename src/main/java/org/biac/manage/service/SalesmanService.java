@@ -63,5 +63,5 @@ public interface SalesmanService {
      * @param openid
      * @return
      */
-    int register(String key,String nickname,String openid,Agent agent);
+    int register(String key,String nickname,String openid,String account);
 }

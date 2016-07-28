@@ -45,7 +45,7 @@ public class AgentController {
         try{
             Agent agent = agentService.login(account,password);
             if(null != agent){
-                if(0 == agent.getStatus()) response.getWriter().write(JsonUtil.statusResponse(0,"该用户账户已被冻结，请联系管理员",null));
+                if(0 != agent.getStatus()) response.getWriter().write(JsonUtil.statusResponse(0,"该用户账户已被冻结，请联系管理员",null));
                 else {
                     request.getSession().setAttribute("_AGENT",agent);
                     request.getSession().setAttribute("_IDENTITY",0); //代表当前登录的是经销商

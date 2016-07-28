@@ -150,9 +150,11 @@ public class SalesmanServiceImpl implements SalesmanService{
      * @param openid
      * @return
      */
-    public int register(String key, String nickname, String openid,Agent agent) {
+    public int register(String key, String nickname, String openid,String  account) {
         try{
-            if(!key.equals(MD5Util.encode(MD5Util.MD5(agent.getAccount())))) return 1; //无效操作
+            Agent agent = agentDao.selectByAccount(account);
+            if(null == agent ) return 1;
+            if(!key.equals(MD5Util.encode(MD5Util.MD5(agent.getPassword())))) return 1; //无效操作
             Salesman salesman = new Salesman();
             salesman.setNickname(nickname);
             salesman.setOpenid(openid);

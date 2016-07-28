@@ -118,10 +118,12 @@ public class SalesmanController {
 
         Salesman salesman = new Salesman();
         salesman.setId(Long.parseLong(id));
-        salesman.setStoreId(Integer.parseInt(store_id));
+        if(null != store_id)
+            salesman.setStoreId(Integer.parseInt(store_id));
         salesman.setWorkId(work_id);
         salesman.setName(name);
-        salesman.setStatus(Integer.parseInt(status));
+        if(null != status)
+            salesman.setStatus(Integer.parseInt(status));
 
         if(0==salesmanService.edit(salesman)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
@@ -140,8 +142,8 @@ public class SalesmanController {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType("application/json;charset=utf-8");
         Agent agent = (Agent) request.getSession().getAttribute("_AGENT");
-        if(null != agent){
-            long store_id = agent.getStoreId();
+     /*   if(null != agent){*/
+            long store_id = 1;/*agent.getStoreId();*/
             String name = request.getParameter("name");  //姓名
             String work_id = request.getParameter("work_id");  //工号
             String status = request.getParameter("status");  //用户状态
@@ -149,7 +151,7 @@ public class SalesmanController {
             if(0==length){
                 response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据",null));
             }else response.getWriter().write(JsonUtil.statusResponse(0,length,salesmanService.query(store_id,name,work_id,status,page)));
-        }else response.getWriter().write(JsonUtil.statusResponse(1,"无符合查询条件的数据",null));
+/*        }else response.getWriter().write(JsonUtil.statusResponse(1,"无符合查询条件的数据",null));*/
     }
     /**
      * 生成微信扫码绑定二维码
@@ -157,7 +159,7 @@ public class SalesmanController {
      * @param response
      * @throws Exception
      */
-    @RequestMapping(value = "/qrCode")
+    @RequestMapping(value = "/qrcode")
     public void qrCode(HttpServletRequest request,HttpServletResponse response) throws Exception{
         response.setContentType("image/jpg");
         Agent agent = null;
@@ -165,8 +167,7 @@ public class SalesmanController {
             agent   = (Agent) request.getSession().getAttribute("_AGENT");
         }
         if(null != agent) {
-            System.out.println("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa76ca32f306d7277&redirect_uri=" + SystemUtil.getProperty("domain") + "/agent/bind?key=" + MD5Util.encode(MD5Util.MD5(agent.getAccount())));
-            byte[] image = QRCode.encode("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa76ca32f306d7277&redirect_uri=" + URLEncoder.encode(SystemUtil.getProperty("domain") + "/agent/bind?key=" + MD5Util.encode(MD5Util.MD5(agent.getAccount())), "utf-8") + "&response_type=code&scope=snsapi_userinfo&state=a13#wechat_redirect", 250, 250, "jpg");
+            byte[] image = QRCode.encode("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa76ca32f306d7277&redirect_uri=" + URLEncoder.encode(SystemUtil.getProperty("domain") + "/salesman/register?key=" + MD5Util.encode(MD5Util.MD5(agent.getPassword()))+"&account="+agent.getAccount(), "utf-8") + "&response_type=code&scope=snsapi_userinfo&state=a13#wechat_redirect", 250, 250, "jpg");
             OutputStream out = response.getOutputStream();
             out.write(image);
             out.flush();
@@ -181,8 +182,7 @@ public class SalesmanController {
      * @throws IOException
      */
     @RequestMapping(value = "/register")
-    public void register(@RequestParam String key,@RequestParam String code,HttpServletRequest request,HttpServletResponse response) throws IOException{
-        Agent agent   = (Agent) request.getSession().getAttribute("_AGENT");
+    public void register(@RequestParam String key,@RequestParam String code,@RequestParam String account, HttpServletRequest request,HttpServletResponse response) throws IOException{
         String APPID = SystemUtil.getProperty("APPID");
         String APPSECRET = SystemUtil.getProperty("APPSECRET");
         //获取accessToken
@@ -204,7 +204,7 @@ public class SalesmanController {
             userIdentityService.insert(identity);
             userService.userInsert(user);
 
-            switch (salesmanService.register(key,userObj.getString("nickname"),userObj.getString("openid"),agent)){
+            switch (salesmanService.register(key,userObj.getString("nickname"),userObj.getString("openid"),account)){
                 case 0:{
                     response.getWriter().write(JsonUtil.statusResponse(0,"推销员注册成功",null));
                     break;
@@ -223,5 +223,20 @@ public class SalesmanController {
             response.getWriter().write(JsonUtil.statusResponse(3,"后台异常",null));
         }
 
+    }
+
+    @RequestMapping(value = "/testqrcode")
+    public void qrCode1(HttpServletRequest request,HttpServletResponse response) throws Exception{
+        response.setContentType("image/jpg");
+        Agent agent = new Agent();
+        agent.setAccount("slanf");
+        agent.setPassword("1234564");
+        if(null != agent) {
+            byte[] image = QRCode.encode("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa76ca32f306d7277&redirect_uri=" + URLEncoder.encode(SystemUtil.getProperty("domain") + "/salesman/register?key=" + MD5Util.encode(MD5Util.MD5(agent.getPassword()))+"&account="+agent.getAccount(), "utf-8") + "&response_type=code&scope=snsapi_userinfo&state=a13#wechat_redirect", 250, 250, "jpg");
+            OutputStream out = response.getOutputStream();
+            out.write(image);
+            out.flush();
+            out.close();
+        }
     }
 }
