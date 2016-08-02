@@ -54,7 +54,6 @@
       </if>
     </where>
     ORDER BY create_date DESC
-    limit #{page_start},#{page_end}
   </select>
   <delete id="delete" parameterType="java.lang.String" >
     delete from tbl_store_info
@@ -107,7 +106,7 @@
       </if>
       update_date = now(),
     </set>
-    WHERE id = #{id,jdbcType=BIGINT},
+    WHERE id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByExample" parameterType="map" >
     update tbl_store_info

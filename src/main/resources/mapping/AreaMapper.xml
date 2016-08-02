@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.biac.manage.dao.AreaMapper">
+  <resultMap id="BaseResultMap" type="org.biac.manage.entity.Area">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="INTEGER" property="code" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="parent" jdbcType="INTEGER" property="parent" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, province, city, district, parent, level, name
+  </sql>
+
+  <select id="queryByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/> from area
+    <where>
+      1=1
+      <if test="null != code">
+        and code = #{code,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>

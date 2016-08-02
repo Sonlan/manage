@@ -1,5 +1,7 @@
 package org.biac.manage.web;
 
+import org.biac.manage.entity.Area;
+import org.biac.manage.service.AreaService;
 import org.biac.manage.service.StoreInfoService;
 import org.biac.manage.utils.JsonUtil;
 import org.biac.manage.utils.MD5Util;
@@ -22,6 +24,8 @@ import java.util.List;
 public class Test {
     @Autowired
     private StoreInfoService storeInfoService;
+    @Autowired
+    private AreaService areaService;
     @RequestMapping(value = "/mail")
     public void mail(){
         MailUtil.sendEmail("1147649695@qq.com","激活测试邮件","<a href='www.baidu.com'>点击激活</a>");
@@ -67,4 +71,17 @@ public class Test {
     public void encode (@RequestParam String key) throws IOException{
         MD5Util.encode(key);
     }
+
+    @RequestMapping(value = "/area")
+    public void area (HttpServletResponse response) throws IOException{
+        response.setContentType("application/json;charset=utf-8");
+        List<Area> list = areaService.queryByCode(null);
+        response.getWriter().write(JsonUtil.statusResponse(0,"",list));
+    }
+
+    @RequestMapping(value = "/toarea")
+    public String toarea () throws IOException{
+        return "test/area";
+    }
+
 }

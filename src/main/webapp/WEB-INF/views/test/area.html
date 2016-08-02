@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='../static/chosen/chosen.min.css' rel='stylesheet'>
+    <script src="../static/chosen/jquery-1.9.1.min.js"></script>
+    <script src="../static/chosen/chosen.jquery.min.js"></script>
+    <title>area</title>
+    <script>
+        $(document).ready(function() {
+            $.post("../test/area","",function (data,status){
+                if(0 == data.errorCode){
+                    var length = getJsonObjLength(data.param);
+                    for(i=0;i<length;i++){
+                        $(".chzn-select").append("<option value='"+data.param[i].code+"'>"+data.param[i].name+"</option>")
+                    }
+                    $(".chzn-select").chosen({no_results_text: "没有匹配结果", search_contains: true});
+                }
+            },'json');
+
+            function getJsonObjLength(jsonObj) {
+                var Length = 0;
+                for (var item in jsonObj) {
+                    Length++;
+                }
+                return Length;
+            }
+        })
+    </script>
+</head>
+<body>
+<label>地&nbsp;区&nbsp;选&nbsp;择&nbsp;</label>
+<select class="chzn-select form-inline input-sm" id="areaCode">
+    <option disabled="disabled" value="">查询</option>
+</select>
+</body>
+</html>

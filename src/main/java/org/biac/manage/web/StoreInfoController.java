@@ -57,13 +57,14 @@ public class StoreInfoController {
         response.setContentType("application/json;charset=utf-8");
         String name = request.getParameter("name");
         String range = request.getParameter("range");
-        String area_code = request.getParameter("area_code");
+        String area_code = request.getParameter("areaCode");
 
         StoreInfo storeInfo = new StoreInfo();
         storeInfo.setId(Long.parseLong(id));
         storeInfo.setName(name);
         storeInfo.setRange(range);
-        storeInfo.setAreaCode(Integer.parseInt(area_code));
+        if(null != area_code)
+            storeInfo.setAreaCode(Integer.parseInt(area_code));
 
         if(0==storeInfoService.update(storeInfo)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
@@ -81,12 +82,13 @@ public class StoreInfoController {
         response.setContentType("application/json;charset=utf-8");
         String name = request.getParameter("name");
         String range = request.getParameter("range");
-        String area_code = request.getParameter("area_code");
+        String area_code = request.getParameter("areaCode");
 
         StoreInfo storeInfo = new StoreInfo();
         storeInfo.setName(name);
         storeInfo.setRange(range);
-        storeInfo.setAreaCode(Integer.parseInt(area_code));
+        if(null != area_code)
+          storeInfo.setAreaCode(Integer.parseInt(area_code));
 
         if(0==storeInfoService.add(storeInfo)){
             response.getWriter().write(JsonUtil.statusResponse(0,"新增成功",null));
@@ -105,7 +107,7 @@ public class StoreInfoController {
         response.setContentType("application/json;charset=utf-8");
         String name = request.getParameter("name");
         String range = request.getParameter("range");
-        String area_code = request.getParameter("area_code");
+        String area_code = request.getParameter("areaCode");
         int length = storeInfoService.queryForSize(name,range,area_code);
         if(0==length){
             response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据 ",null));
