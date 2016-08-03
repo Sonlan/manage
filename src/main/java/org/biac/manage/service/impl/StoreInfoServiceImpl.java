@@ -1,5 +1,6 @@
 package org.biac.manage.service.impl;
 
+import org.biac.manage.dao.AreaMapper;
 import org.biac.manage.dao.StoreInfoMapper;
 import org.biac.manage.entity.StoreInfo;
 import org.biac.manage.service.StoreInfoService;
@@ -19,6 +20,8 @@ import java.util.Map;
 public class StoreInfoServiceImpl implements StoreInfoService{
     @Autowired
     private StoreInfoMapper storeInfoDao;
+    @Autowired
+    private AreaMapper areaDao;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
      * 新增一条经销点信息记录
@@ -113,6 +116,15 @@ public class StoreInfoServiceImpl implements StoreInfoService{
             e.printStackTrace();
             logger.error(this.getClass().toString()+"经销点信息数目获取异常");
             return  0;
+        }
+    }
+
+    public List<StoreInfo> getall() {
+        try{
+            return storeInfoDao.getall();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 

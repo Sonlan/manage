@@ -41,4 +41,6 @@ public interface StoreInfoMapper {
      * @return
      */
     List<StoreInfo> queryForSize(Map<Object,Object> map);
+
+    List<StoreInfo> getall();
 }

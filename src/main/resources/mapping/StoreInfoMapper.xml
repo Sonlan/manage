@@ -18,6 +18,11 @@
     from tbl_store_info
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="getall" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tbl_store_info
+  </select>
   <select id="querySelective" resultMap="BaseResultMap" parameterType="java.util.Map">
     select
     <include refid="Base_Column_List" />
@@ -30,7 +35,7 @@
         <if test="range !=null">
           and range LIKE '%${range}%'
         </if>
-        <if test="area_code != null">
+        <if test="area_code != null and  ''!=area_code and area_code != 0">
           and area_code =#{area_code,jdbcType=INTEGER}
         </if>
     </where>

@@ -99,7 +99,7 @@
                 <if test="range !=null">
                     and t2.range LIKE '%${range}%'
                 </if>
-                <if test="area_code != null">
+              <if test="area_code != null and  ''!=area_code and area_code != 0">
                     and t2.area_code =#{area_code,jdbcType=INTEGER}
                 </if>
             </where>

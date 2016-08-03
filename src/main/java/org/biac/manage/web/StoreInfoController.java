@@ -63,8 +63,7 @@ public class StoreInfoController {
         storeInfo.setId(Long.parseLong(id));
         storeInfo.setName(name);
         storeInfo.setRange(range);
-        if(null != area_code)
-            storeInfo.setAreaCode(Integer.parseInt(area_code));
+        storeInfo.setAreaCode(area_code);
 
         if(0==storeInfoService.update(storeInfo)){
             response.getWriter().write(JsonUtil.statusResponse(0,"修改成功",null));
@@ -87,8 +86,7 @@ public class StoreInfoController {
         StoreInfo storeInfo = new StoreInfo();
         storeInfo.setName(name);
         storeInfo.setRange(range);
-        if(null != area_code)
-          storeInfo.setAreaCode(Integer.parseInt(area_code));
+        storeInfo.setAreaCode(area_code);
 
         if(0==storeInfoService.add(storeInfo)){
             response.getWriter().write(JsonUtil.statusResponse(0,"新增成功",null));
@@ -112,5 +110,13 @@ public class StoreInfoController {
         if(0==length){
             response.getWriter().write(JsonUtil.statusResponse(0,"无符合查询条件的数据 ",null));
         }else response.getWriter().write(JsonUtil.statusResponse(0,length,storeInfoService.query(name,range,area_code,page)));
+    }
+
+    @RequestMapping(value = "/getall")
+    public void getall(HttpServletResponse response) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setContentType("application/json;charset=utf-8");
+        List<StoreInfo> list = storeInfoService.getall();
+        response.getWriter().write(JsonUtil.statusResponse(0,"",list));
     }
 }

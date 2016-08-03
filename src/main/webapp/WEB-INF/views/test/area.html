@@ -8,13 +8,15 @@
     <title>area</title>
     <script>
         $(document).ready(function() {
+            $(".chzn-select").chosen({no_results_text: "没有匹配结果", search_contains: true});
             $.post("../test/area","",function (data,status){
                 if(0 == data.errorCode){
                     var length = getJsonObjLength(data.param);
                     for(i=0;i<length;i++){
                         $(".chzn-select").append("<option value='"+data.param[i].code+"'>"+data.param[i].name+"</option>")
                     }
-                    $(".chzn-select").chosen({no_results_text: "没有匹配结果", search_contains: true});
+                    $(".chzn-select").text("中华人民共和国");
+                    $(".chzn-select").trigger("chosen:updated");
                 }
             },'json');
 
@@ -25,12 +27,15 @@
                 }
                 return Length;
             }
+            $(".chzn-select").change(function(){
+                alert($(".chzn-select").find("option:selected").text());
+            })
         })
     </script>
 </head>
 <body>
 <label>地&nbsp;区&nbsp;选&nbsp;择&nbsp;</label>
-<select class="chzn-select form-inline input-sm" id="areaCode">
+<select class="chzn-select form-inline input-sm" id="areaCode" style="width: 200px">
     <option disabled="disabled" value="">查询</option>
 </select>
 </body>

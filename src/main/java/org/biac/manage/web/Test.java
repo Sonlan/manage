@@ -33,7 +33,7 @@ public class Test {
 
     @RequestMapping(value = "/tojson")
     public void tojson (HttpServletResponse response) throws IOException{
-        String [] list = {"asd","0123","asdqwe"};
+        String [] list = {"asd","0123456","asdqwe"};
         response.getWriter().write(JsonUtil.statusResponse(0,"test",list));
     }
 

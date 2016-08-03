@@ -51,7 +51,7 @@ public class AgentController {
                     request.getSession().setAttribute("_IDENTITY",0); //代表当前登录的是经销商
                     response.getWriter().write(JsonUtil.statusResponse(0,"登录成功",agent));
                 }
-            }else response.getWriter().write(JsonUtil.statusResponse(0,"不存在该用户",null));
+            }else response.getWriter().write(JsonUtil.statusResponse(1,"不存在该用户",null));
         }catch (Exception e){
             response.getWriter().write(JsonUtil.statusResponse(1,"后台异常",null));
         }

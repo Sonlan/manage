@@ -9,7 +9,7 @@ public class StoreInfo {
 
     private String range;
 
-    private int areaCode;
+    private String areaCode;
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private String createDate;
     @DateTimeFormat(pattern = "yyyy-mm-dd")
@@ -39,11 +39,11 @@ public class StoreInfo {
         this.range = range == null ? null : range.trim();
     }
 
-    public int getAreaCode() {
+    public String getAreaCode() {
         return areaCode;
     }
 
-    public void setAreaCode(int areaCode) {
+    public void setAreaCode(String areaCode) {
         this.areaCode = areaCode;
     }
 
