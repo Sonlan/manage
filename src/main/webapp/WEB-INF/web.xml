@@ -64,6 +64,6 @@
         <session-timeout>60</session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>/WEB-INF/views/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/views/login.html</welcome-file>
     </welcome-file-list>
 </web-app>

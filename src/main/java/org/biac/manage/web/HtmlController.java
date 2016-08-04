@@ -12,22 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HtmlController {
     @RequestMapping(value = "/entAgencyManagement")
     public String entAgencyManagement(){
-        return "views/entAgencyManagement";
+        return "entAgencyManagement";
     }
     @RequestMapping(value = "/entEntManagement")
     public String entEntManagement(){
-        return "views/entEntManagement";
+        return "entEntManagement";
     }
     @RequestMapping(value = "/entProductInfo")
     public String entProductInfo(){
-        return "views/entProductInfo";
+        return "entProductInfo";
     }
     @RequestMapping(value = "/entSalerManagement")
     public String entSalerManagement(){
-        return "views/entSalerManagement";
+        return "entSalerManagement";
     }
     @RequestMapping(value = "/entUserManagement")
     public String entUserManagement(){
-        return "views/entUserManagement";
+        return "entUserManagement";
+    }
+    @RequestMapping(value = "/entAgencyInfo")
+    public String entAgencyInfo(){
+        return "entAgencyInfo";
     }
 }

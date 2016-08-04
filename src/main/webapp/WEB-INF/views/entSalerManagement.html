@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>企业管理系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../static/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- wyh css --> 
+	<link href="../static/user/css/basic.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+        <img src="../static/images/bg/bk7_1.jpg" id="bg-img"/>
+		
+		<header>
+		    <div class="container">
+			    <div class="col-xs-5 col-md-3">
+				    <h3>企业<span>管理平台</span></h3>
+				    </div>
+				<div class="col-xs-6 col-xs-offset-1 col-md-3 col-md-offset-6">
+				    <p>登出</p>
+                	</div>			
+			    </div>
+		</header>
+		
+		<section>
+		    <div class="container">
+			    <div class="col-md-3" id="side-nav">
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>用户管理</h3></header>
+						<p class="bar-item userNormal">普通用户</p>
+						<p class="bar-item userSaler">促销员</p>
+						<p class="bar-item userAgency">经销商</p>
+						<!--<p class="bar-item" data-nav-group="nav-user">企业</p>-->
+					    </div>
+					<hr/>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>绩效管理</h3></header>
+						<p class="bar-item">促销员绩效</p>					
+						<p class="bar-item">经销商绩效</p>									
+					    </div>
+					<hr/>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>信息管理</h3></header>
+						<p class="bar-item" data-nav-group="nav-info">产品信息</p>
+						<p class="bar-item" data-nav-group="nav-info">经销点信息</p>
+						<p class="bar-item" data-nav-group="nav-info">消费信息</p>
+					    </div>
+					<hr/>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>促销活动</h3></header>
+						<p class="bar-item">抽奖活动</p>
+						<p class="bar-item">闯关活动</p>
+						<p class="bar-item">积分换购</p>
+					    </div>
+					<hr/>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>统计分析</h3></header>
+						<p class="bar-item">销售走势</p>
+						<p class="bar-item">经销网点</p>
+						<p class="bar-item">货物流通</p>
+					    </div>
+				    </div>
+					<!--side-nav end-->
+					
+				<div class="col-md-9" id="main-content">
+					<header><h3>促销员管理</h3></header>				
+					<hr/>	
+					
+					<div class="edit-register">
+					    <div class="user-register">
+							<h4 style="margin-bottom: 3em;">促销员注册</h4>
+							<div class="saler-reg">
+							    <div>
+                                    <img src="../static/images/user_prof/qr.jpg" style="width:100%;" alt="二维码">
+								    </div>
+								<button class="btn btn-warning" style="width:100%; margin-top: 2em;">生成二维码</button>
+								</div>
+						    </div>
+					    <div class="user-edit template">
+							<h4 style="margin-bottom: 3em;">促销员编辑</h4>
+							<div class="saler-edit">
+								<input type="text" class="id template" placeholder="id" style="width:100%;height:2em;"></input>
+								<hr style="margin-top:8px; margin-bottom:8px;"/>
+								<input type="text" class="work_id" placeholder="工号" style="width:100%;height:2em;"></input>
+								<hr style="margin-top:8px; margin-bottom:8px;"/>
+								<input type="text" class="name" placeholder="姓名" style="width:100%;height:2em;"></input>
+								<hr style="margin-top:8px; margin-bottom:8px;"/>
+								<input type="text" class="status template" placeholder="用户状态" style="width:100%;height:2em;"></input>
+								<hr style="margin-top:8px; margin-bottom:8px;"/>
+								<button class="btn btn-warning" style="width: 100%">提交</button>
+								</div>
+						    </div>
+					    </div>
+					<hr>
+					
+					<h4>促销员查询管理</h4>
+						
+					<div class="group-nav underline-item-group">
+						<p class="underline-item float-left user-state-choose">正常</p>
+						<p class="underline-item float-left user-state-choose">冻结</p>
+						</div>
+
+					<div id="saler-item-panel">
+						<div class="row">
+							<div class="table_wrap col-xs-8">
+							    <div class="saler-opt">
+								    <button class="btn btn-warning suspend" style="width:5em;" disabled="disabled">冻结</button>
+								    <button class="btn btn-warning activate template" style="width:5em;" disabled="disabled">恢复</button>
+								    <button class="btn btn-warning edit" style="width:5em;" disabled="disabled">编辑</button>
+								    <button class="btn btn-warning delete" style="width:5em;" disabled="disabled">删除</button>
+								    </div>
+								
+								<div class="saler-item-none">
+								    暂无结果
+								    </div>
+								<table class="user-item-table template">
+									<tbody>
+
+										</tbody>
+								</table>
+								
+								<nav class="pageNav">
+									<ul class="pagination">
+										<li class="disabled">
+										  <a href="#" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+										  </a>
+										</li>
+
+										<li class="disabled">
+										  <a href="#" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+										  </a>
+										</li>
+									</ul>
+								</nav>
+							    </div>
+								<!--table_wrap end col-xs-8-->	
+                            <div class="col-xs-4">
+							    <div>
+								    <!--take space-->
+                                    </div>
+                                <div class="saler-item-detail template">
+								    <img src="../static/images/user_prof/user3.jpg" alt="saler"/>
+								    <table>
+									    <thead>
+										    <tr>
+											    <th>姓名:</th>
+												<th class='name'></th>
+											</tr>
+										</thead>
+									    <tbody>
+											<tr>
+											    <th>微信昵称:</th>
+											    <td class="nickname"></td>
+											</tr>
+										    <tr>
+											    <th>id:</th>
+												<td class="id"></td>
+											</tr>
+										    <tr>
+											    <th>经销商编号:</th>
+												<td class="store_id"></td>
+											</tr>
+										    <tr>
+											    <th>工号:</th>
+												<td class="work_id"></td>
+											</tr>
+											<tr>
+											    <th>openID:</th>
+												<td class="openid"></td>
+											</tr>
+											<tr>
+											    <th>创建时间:</th>
+												<td class="create_date"></td>
+											</tr>
+											<tr>
+											    <th>用户状态:</th>
+												<td class="status"></td>
+											</tr>
+										</tbody>
+									</table>
+                                    </div>								
+                            </div>
+                            <!--row end-->							
+
+						</div>
+						<!--div main-panel-->
+
+				    </div>
+					<!--main-content end-->
+			    </div>
+				<!--container end-->
+		</section>
+		
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/bootstrap-3.3.5-dist/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+	<!-- basic js -->
+	<script src="../static/user/js/saler.js"></script>
+
+  </body>
+</html>

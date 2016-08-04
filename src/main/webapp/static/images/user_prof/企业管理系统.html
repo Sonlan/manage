@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!-- saved from url=(0018)http://localhost/# -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>企业管理系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./企业管理系统_files/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="./企业管理系统_files/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- wyh css -->
+	<link href="./企业管理系统_files/basic.css" rel="stylesheet">
+	<link href="./企业管理系统_files/ent-user.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+        <img src="./企业管理系统_files/bk7_1.jpg" id="bg-img">
+		
+		<header>
+		    <div class="container">
+			    <div class="col-xs-5 col-md-3">
+				    <h3>企业<span>管理平台</span></h3>
+				    </div>
+				<div class="col-xs-6 col-xs-offset-1 col-md-3 col-md-offset-6">
+				    <p>登出</p>
+                	</div>			
+			    </div>
+		</header>
+		
+		<section>
+		    <div class="container">
+			    <div class="col-md-3" id="side-nav">
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>用户管理</h3></header>
+						<p class="bar-item" data-nav-group="nav-user">普通用户</p>
+						<p class="bar-item" data-nav-group="nav-user">促销员</p>
+						<p class="bar-item" data-nav-group="nav-user">经销商</p>
+						<p class="bar-item" data-nav-group="nav-user">派送员</p>
+					    </div>
+					<hr>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>绩效管理</h3></header>
+						<p class="bar-item">促销员绩效</p>					
+						<p class="bar-item">经销商绩效</p>									
+					    </div>
+					<hr>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>信息管理</h3></header>
+						<p class="bar-item choosen" data-nav-group="nav-info">产品信息</p>
+						<p class="bar-item" data-nav-group="nav-info">经销点信息</p>
+						<p class="bar-item" data-nav-group="nav-info">消费信息</p>
+					    </div>
+					<hr>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>促销活动</h3></header>
+						<p class="bar-item">抽奖活动</p>
+						<p class="bar-item">闯关活动</p>
+						<p class="bar-item">积分换购</p>
+					    </div>
+					<hr>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>统计分析</h3></header>
+						<p class="bar-item">销售走势</p>
+						<p class="bar-item">经销网点</p>
+						<p class="bar-item">货物流通</p>
+					    </div>
+				    </div>
+					<!--side-nav end-->
+					
+				<div class="col-md-9" id="main-content"><div class="info-content">
+	<header><h3>产品信息管理</h3></header>
+	<hr>
+	
+	<div class="group-nav underline-item-group">
+		<p class="underline-item float-left">新建产品信息</p>
+		<p class="underline-item float-left choosen">已有产品信息</p>
+	    </div>
+	
+	<div class="info-panel">
+	    <div class="createGoods template">
+		    <form>
+				<hr>
+				<input type="text" placeholder="产品名称" name="name" style="font-size: 125%;font-weight: bold;display: block;width: 100%">
+				<hr>
+				<input type="text" placeholder="生产商" name="producer" style="display: block;width: 100%">
+				<hr>
+				<input type="text" placeholder="生产地" name="origin" style="display: block;width: 100%">
+				<hr>
+				<input type="text" placeholder="url" name="url" style="display: block;width: 100%">
+				<hr>
+				<div class="input-group">
+					<input type="text" placeholder="单价" name="price" class="form-control" aria-describedby="copyPrice"><span class="input-group-addon" id="copyPrice">元</span>
+					</div> 
+				<hr>
+				<div class="input-group">
+					<input type="text" placeholder="保质期" name="exp_date" class="form-control" aria-describedby="guaranteeMonth"><span class="input-group-addon" id="guaranteeMonth">月</span>
+					</div>  
+				<hr>
+				<div class="input-group">
+					<input type="text" placeholder="规格" name="box_cnt" class="form-control" aria-describedby="measurement"><span class="input-group-addon" id="measurement">瓶/箱</span>
+					</div>
+				<hr>
+				<textarea placeholder="产品描述" name="description" style="height: 20em; width: 100%"></textarea>
+			    </form>
+		    <hr>
+			<!--img upload-->
+			<h4>图片上传</h4>
+			<div id="imgdiv"><img id="imgShow" width="600" height="450"></div>
+			<input type="file" id="up_img">
+			<!--img upload end-->
+			<hr>
+			<button type="button" class="btn btn-warning btn-lg center-block submit">提交</button>
+			<hr>
+		</div>
+		<!-- createGoods -->
+		
+		<!-- template -->
+		<div class="queryGoods">
+			<div class="goods-item row template">
+				<div class="col-xs-4">
+					<img src="./企业管理系统_files/user1.jpg" class="img-rounded goods-prof" alt="user">
+					</div>
+				<div class="col-xs-8">
+					<h4 class="text-right">品名：<span class="name">鲜橙多</span></h4>
+					<h5 class="text-right">生产商：<span class="producer">湖北省大创食品有限公司</span></h5>
+					<h5 class="text-right">生产地：<span class="origin">中华人民共和国湖北省武汉市珞喻路1037号</span></h5>
+					<h5 class="text-right">url：<span class="url">localhost/some/a</span></h5>
+					<h5 class="text-right">单价：<span class="price">5元</span></h5>
+					<h5 class="text-right">保质期：<span class="exp_date">12月</span></h5>
+					<h5 class="text-right">规格：<span class="box_cnt">10瓶/箱</span></h5>
+					<h5 class="text-right">描述：<span class="description">夏天的味道</span></h5>
+					<button type="button" class="btn-warning btn-sm">编辑</button>
+					<button type="button" class="btn-warning btn-sm">删除</button>
+					</div>
+				</div>
+				
+				<nav class="pageNav">
+				  <ul class="pagination">
+					<li>
+					  <a href="http://localhost/#" aria-label="Previous">
+						<span aria-hidden="true">«</span>
+					  </a>
+					</li>
+
+					<li><a>1</a></li><li><a>2</a></li><li><a>3</a></li><li><a>4</a></li><li><a>5</a></li><li>
+					  <a href="http://localhost/#" aria-label="Next">
+						<span aria-hidden="true">»</span>
+					  </a>
+					</li>
+				  </ul>
+				</nav>
+			</div>
+			<!--template iqueryGoods-->
+	</div>
+	<!-- info-panel -->
+	
+</div>
+<!-- info-content -->
+</div>
+					<!--main-content end-->
+			    </div>
+				<!--container end-->
+		</section>
+		
+		<!--template-->
+		
+		<div class="template user-detail">
+		    <img class="detail-pro" src="http://localhost/">
+			<h4></h4>
+			<hr>
+			<div class="user-detail-item">
+			    <h5 class="dis-inline">ID</h5><span class="float-right"></span>
+                </div>
+			<div class="user-detail-item">
+			    <h5 class="dis-inline">姓名</h5><span class="float-right"></span>
+			    </div>
+			<div class="user-detail-item">
+			    <h5 class="dis-inline">昵称</h5><span class="float-right"></span>
+			    </div>
+				
+		    </div>
+			
+			
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./企业管理系统_files/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./企业管理系统_files/bootstrap.min.js"></script>
+	<!-- basic js -->
+	<script src="./企业管理系统_files/basic.js"></script>
+
+  
+</body></html>

@@ -1,0 +1,234 @@
+/******************* public style *******************/
+.float-left {
+	float: left;
+}
+.float-right {
+	float: right;
+}
+.dis-inline {
+	display: inline;
+}
+.clear-both {
+	clear: both;
+}
+.text-right {
+	text-align: right;
+}
+.template {
+	display: none;
+}
+
+h1,h2,h3,h4,h5,h6,p,span {
+	font-family: '微软雅黑';
+}
+
+/* background-image */
+#bg-img {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	overflow: hidden;
+}
+
+#side-nav {
+    border-right: 1px solid rgb(230,230,230);
+}
+
+/* main header 有待重做*/
+header {
+	background-color: rgb(250,250,250);
+}
+header div.col-xs-6 {
+	padding-top: 26px;
+}
+header p {
+	cursor: pointer;
+	text-align: center;
+	width: 5em;
+}
+header p.hover {
+	background-color: rgb(160,160,160);
+}
+
+#templates {
+	display: none;
+}
+
+/*section*/
+section {
+	margin-top : 5em;
+}
+section div.container {
+	background-color: rgb(250,250,250);
+}
+
+/* underline-item wyh geer */
+.underline-item {
+	padding: 0.5em 3em;
+	font-weight: bold;
+	cursor: pointer;
+}
+.underline-item.choosen {
+	border-bottom: 4px solid rgb(255,127,39);
+}
+.underline-item.hover {
+	border-bottom: 4px solid rgb(160,160,160);
+}
+
+/* bar-item */
+.bar-block header {
+	color: rgb(160,160,160);
+	margin-bottom: 1em;
+}
+.bar-item {
+	font-size: 120%;
+	cursor: pointer;
+	text-align: center;
+}
+.bar-item {
+	margin: 0;
+	padding: 5px 0;
+}
+.bar-item.choosen {
+	background-color: rgba(255,127,39, .7);
+}
+.bar-item.hover {
+	background-color: rgb(230,230,230);
+}
+
+/* nav */
+nav.pageNav li:hover {
+	cursor: pointer;
+}
+nav.pageNav li.data-active a{
+	background-color: rgb(255,127,39);
+	color: white;
+}
+
+/**************************/
+
+/* entUserManagement*/
+.user-item-detail td, .user-item-detail th {
+	word-break: break-all; 
+    word-wrap: break-word;
+	min-width: 5em;
+}
+.user-item-none {
+	width: 100%;
+	text-align: center;
+	padding-top: 10em;
+	padding-bottom: 10em;
+	text-weight: bold;
+	color: rgb(160,160,160);
+}
+#user-item-panel {
+	clear: both;
+}
+.user-item.highlight {
+	background-color: rgba(230,230,230,.8);
+}
+.table_wrap {
+	padding: 10px 5px;
+}
+.table_wrap table {
+	width: 100%;
+}
+.table_wrap table thead {
+	border-bottom: 1px solid rgb(200,200,200);
+}
+.table_wrap table th {
+	width: 33.3%;
+	margin: 0.5em 0;
+}
+.table_wrap table tr {
+	height: 4em;
+}
+
+.user-item {
+	position: relative;
+}
+.user-item img {
+	height: 3em;
+	width: 3em;
+}
+
+.user-item-detail {
+	margin-top: 5em;
+}
+.user-item-detail img {
+    width: 100%;
+	min-width: 8em;
+}
+.user-item-detail table {
+	width: 100%;
+}
+.user-item-detail th {
+    width: 6em;
+	color: rgb(140,140,140);
+}
+.user-item-detail tr {
+	height: 2em;
+}
+
+
+/* entProductInfo */
+table.product-info-table {
+	width: 100%;
+	margin-bottom: 2em;
+}
+table.product-info-table tr {
+	height: 2em;
+}
+.createGoods, .editGoods {
+	clear: both;
+}
+.goods-prof {
+	height: 20em;
+	width: 20em;
+}
+
+/* entSpecialUserManagement */
+.saler-item-detail img {
+    width: 100%;
+	min-width: 8em;
+}
+#saler-item-panel {
+	clear: both;
+}
+.saler-item.highlight {
+	background-color: rgba(230,230,230,.8);
+}
+.saler-item-detail {
+
+}
+.saler-item-detail th {
+	min-width: 6em;
+}
+.saler-reg, .saler-edit{
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.saler-item-detail tr{
+	min-height: 2em;
+}
+.saler-item-detail td {
+	word-break: break-all; 
+    word-wrap: break-word;
+}
+.saler-item-none {
+	width: 100%;
+	text-align: center;
+	padding-top: 10em;
+	padding-bottom: 10em;
+	text-weight: bold;
+	color: rgb(160,160,160);
+}
+.user-item-table thead th {
+	min-width: 5em;
+}
+.saler-item-detail th {
+	color: rgb(160,160,160);
+}
+

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>企业管理系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../static/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- wyh css -->
+	<link href="../static/user/css/basic.css" rel="stylesheet">
+	<link href="../static/user/css/dealer.css" rel="stylesheet">
+	<link href='../static/chosen/chosen.min.css' rel='stylesheet'>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+        <img src="../static/images/bg/bk7_1.jpg" id="bg-img"/>
+		
+		<header>
+		    <div class="container">
+			    <div class="col-xs-5 col-md-3">
+				    <h3>企业<span>管理平台</span></h3>
+				    </div>
+				<div class="col-xs-6 col-xs-offset-1 col-md-3 col-md-offset-6">
+				    <p>登出</p>
+                	</div>			
+			    </div>
+		</header>
+		
+		<section>
+		    <div class="container">
+			    <div class="col-md-3" id="side-nav">
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>用户管理</h3></header>
+						<p class="bar-item userNormal">普通用户</p>
+						<p class="bar-item userSaler">促销员</p>
+						<p class="bar-item userAgency">经销商</p>
+						<!--<p class="bar-item" data-nav-group="nav-user">企业</p>-->
+					    </div>
+					<hr/>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>绩效管理</h3></header>
+						<p class="bar-item">促销员绩效</p>					
+						<p class="bar-item">经销商绩效</p>									
+					    </div>
+					<hr/>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>信息管理</h3></header>
+						<p class="bar-item productInfo">产品信息</p>
+						<p class="bar-item agentInfo">经销点信息</p>
+						<p class="bar-item" data-nav-group="nav-info">消费信息</p>
+					    </div>
+					<hr/>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>促销活动</h3></header>
+						<p class="bar-item">抽奖活动</p>
+						<p class="bar-item">闯关活动</p>
+						<p class="bar-item">积分换购</p>
+					    </div>
+					<hr/>
+				    <div class="bar-block">
+					    <header><h3><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>统计分析</h3></header>
+						<p class="bar-item">销售走势</p>
+						<p class="bar-item">经销网点</p>
+						<p class="bar-item">货物流通</p>
+					    </div>
+				    </div>
+					<!--side-nav end-->
+					
+				<div class="col-md-9" id="main-content">
+					<div class="dealer-wrapper">
+						<div class="mask"></div>
+						<!--<div class="mask2"><img src="../static/images/load/load.gif"/></div>-->
+						<div class="add-revise-dealer" id="warning">
+							<h4></h4>
+							<input type="button" id="delete-submit" value="确认"/>
+							<input type="button" id="delete-cancel" value="取消"/>
+						</div>
+						<div class="get-add">
+							<div id="query-term">
+								<label for="query-name">名称:</label>
+								<input type="text" id="query-name"/>
+								<label for="query-business">经营范围:</label>
+								<input type="text" id="query-business"/>
+								<div id="query-location-wrapper">
+									<label for="query-location">地理位置:</label>
+									<select class="chzn-select form-inline input-sm" style="width:28.4em" id="query-location">
+										<option disabled="disabled" value="">查询</option>
+									</select>
+								</div>
+							</div>
+							<div id="get-add-button">
+								<div><input type="button" class="get-dealer-button" value="查询"/></div>
+								<input type="button" class="add-dealer-button" value="添加经销点"/>
+							</div>
+						</div>
+						<div id="add-revise-wrapper">
+							<form class="add-revise-dealer" id="add-dealer">
+								<a class="block-close">X</a>
+								<h3>请填写经销点信息</h3>
+								<span class="error-span"></span>
+								<input type="text" name="name" class="dealer-name" placeholder="请输入经销点名称"/>
+								<span class="error-span"></span>
+								<input type="text" name="business" class="dealer-business" placeholder="请输入经销点经营范围"/>
+								<span class="error-span"></span>
+								<select class="chzn-select form-inline input-sm dealer-location" style="width:15em;">
+										<option disabled="disabled" value="">查询</option>
+								</select>
+								<span class="error-span"></span>
+								<input type="button" class="dealer-submit" value="提&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp交"/>
+							</form>
+							<form class="add-revise-dealer" id="revise-dealer">
+								<a class="block-close">X</a>
+								<h3>请填写经销点信息</h3>
+								<label for="revise-dealer-name">经销点名称：</label>
+								<input type="text" name="name" class="dealer-name" id="revise-dealer-name"/>
+								<label for="revise-dealer-business">经销点经营范围：</label>
+								<input type="text" name="business" class="dealer-business" id="revise-dealer-business"/>
+								<label for="revise-dealer-location">经销点地理位置：</label>
+								<select name="location" class="chzn-select form-inline input-sm dealer-location" id="revise-dealer-location" style="width:15em;">
+										<option disabled="disabled" value="">查询</option>
+								</select>
+								<input type="button" class="dealer-submit" value="确认修改"/>
+							</form>
+							<div class="detail-info add-revise-dealer">
+								<a class="block-close">X</a>
+								<h3>经销点信息</h3>
+								<ul>
+									<li>经销点名称：<span></span></li>
+									<li>经营范围：<span></span></li>
+									<li>地理位置：<span></span></li>
+									<li>创建时间：<span></span></li>
+									<li>更新时间：<span></span></li>
+								<ul>
+							</div>
+						</div>
+						<div class="table-wrapper">
+							<h3>经销点信息</h3>
+							<table border="1" class="dealer-info">
+							
+							</table>
+							<ul id="pages">
+							
+							</ul>
+						</div><!--.table-wrapper end-->
+				    </div><!--.dealer-wrapper end-->
+					<!--main-content end-->
+			    </div>
+				<!--container end-->
+		</section>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/bootstrap-3.3.5-dist/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+	<!-- basic js -->
+	<script src="../static/user/js/dealer.js"></script>
+	<script src="../static/user/js/jquery.validate.min.js"></script>
+	<script src="../static/user/js/messages_zh.js"></script>
+    <script src="../static/chosen/chosen.jquery.min.js"></script>
+  </body>
+</html>

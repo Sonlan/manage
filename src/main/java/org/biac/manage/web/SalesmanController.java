@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +114,7 @@ public class SalesmanController {
         response.setContentType("application/json;charset=utf-8");
         String store_id = request.getParameter("store_id");
         String work_id = request.getParameter("work_id");
-        String name = request.getParameter("name");
+        String name = URLDecoder.decode(request.getParameter("name"),"utf-8");
         String status = request.getParameter("status");
 
         Salesman salesman = new Salesman();

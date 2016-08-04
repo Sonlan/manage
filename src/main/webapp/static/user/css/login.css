@@ -1,0 +1,47 @@
+#intro {
+	display: none;
+	color: white;
+	background-color: rgba(160,160,160,.7);
+}
+
+#login-panel-outer {
+	margin-top: 5em;
+}
+
+
+@media (min-width: 1200px) {
+	#intro {
+		display: block;
+		color: white;
+		background-color: rgba(160,160,160,.7);
+	}
+	#login-panel-outer {
+		margin-top : 15em;
+	}
+	
+}
+
+h1,h2,h3,h4,h5,h6,p,input {
+	font-family: '微软雅黑';
+}
+
+#bg-img {
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	z-index: -1;
+}
+
+#login-panel {
+	color: white;
+	background-color: rgba(160,160,160,.7);
+	padding: 3em;
+}
+
+.margin-s {
+    margin-top: 15em;
+}
+.margin-l {
+	margin-top: 18em;
+}

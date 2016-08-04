@@ -1,0 +1,94 @@
+/******************* public style *******************/
+.float-left {
+	float: left;
+}
+.float-right {
+	float: right;
+}
+.dis-inline {
+	display: inline;
+}
+.clear-both {
+	clear: both;
+}
+.text-right {
+	text-align: right;
+}
+/********************/
+
+h1,h2,h3,h4,h5,h6,p,span {
+	font-family: '微软雅黑';
+}
+
+/* basic style */
+/* background-image */
+#bg-img {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	overflow: hidden;
+}
+
+#side-nav {
+    border-right: 1px solid rgb(230,230,230);
+}
+
+/* main header */
+header {
+	background-color: rgb(250,250,250);
+}
+header div.col-xs-6 {
+	padding-top: 26px;
+}
+header p {
+	cursor: pointer;
+	text-align: center;
+	width: 5em;
+}
+header p.hover {
+	background-color: rgb(160,160,160);
+}
+
+/*section*/
+section {
+	margin-top : 5em;
+}
+section div.container {
+	background-color: rgb(250,250,250);
+}
+
+/* underline-item wyh geer */
+.underline-item {
+	padding: 0.5em 3em;
+	font-weight: bold;
+	cursor: pointer;
+}
+.underline-item.choosen {
+	border-bottom: 4px solid rgb(255,127,39);
+}
+.underline-item.hover {
+	border-bottom: 4px solid rgb(160,160,160);
+}
+/**************************/
+
+/* bar-item */
+.bar-block header {
+	color: rgb(160,160,160);
+	margin-bottom: 1em;
+}
+.bar-item {
+	font-size: 120%;
+	cursor: pointer;
+	text-align: center;
+}
+.bar-item {
+	margin: 0;
+	padding: 5px 0;
+}
+.bar-item.choosen {
+	background-color: rgba(255,127,39, .7);
+}
+.bar-item.hover {
+	background-color: rgb(230,230,230);
+}

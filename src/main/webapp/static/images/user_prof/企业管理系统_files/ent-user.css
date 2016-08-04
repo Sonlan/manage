@@ -1,0 +1,78 @@
+/* user-manage button */
+.user-manage button {
+	width: 7em;
+	font-family: '微软雅黑';
+	font-size: 90%;
+	letter-spacing: 3px;
+}
+
+/* user-item 框 */
+.user-item {
+	margin-bottom: 1em;
+}
+img.user-prof {
+	height: 3em;
+	width: 3em;
+}
+h4.user-name {
+	display: inline;
+}
+div.tag-control {
+	float: right;
+	display: inline;
+}
+
+/* goods-item 框 */
+.goods-item {
+	padding: 0.8em;
+	margin-bottom: 1em;
+	margin-top: 1em;
+	border: 1px solid rgb(230,230,230);
+	border-radius: 5px;
+}
+img.goods-prof {
+	height: 200px;
+	width: 200px;
+}
+
+.template {
+	display: none;
+}
+.detail-pro {
+	height: 10em;
+	width: 10em;
+	float: left;
+}
+.user-detail {
+	position: absolute;
+	top: 0;
+	left: 4.2em;
+	width: 25em;
+	height: 11em;
+	background-color: rgb(255,255,255);
+	border-radius: 5px;
+    border: 1px solid rgb(160,160,160);
+	z-index: 10;
+	
+}
+.user-detail-item {
+	padding-right: 0.5em;
+}
+/********** user-content ************/
+.info-panel {
+	clear: both;
+	margin: 5em 0;
+	border: 1px solid rgb(230,230,230);
+	padding: 0 2em;
+}
+
+
+
+
+
+
+/*图片上传模块*/
+#imgShow {
+
+}
+
