@@ -204,7 +204,7 @@ $(function(){//没有$.ready的写法，只有$()、$().ready和$(document).read
 					/*data.param[i].createDate=data.param[i].createDate.toString();
 					data.param[i].updateDate=data.param[i].updateDate.toString();*/
 					tableData[i]='<tr class="table-contents" id="'+data.param[i].id+'"><td><a class="td-dealer-name">'+data.param[i].name+'</a></td><td>'
-									+data.param[i].range+'</td>'+'<td>'+data.param[i].areaCode+'</td>+<td>'+data.param[i].createDate+'</td><td>'+data.param[i].createDate
+									+data.param[i].ranges+'</td>'+'<td>'+data.param[i].areaCode+'</td>+<td>'+data.param[i].createDate+'</td><td>'+data.param[i].createDate
 									+'</td><td><a class="revise-button">修改</a>&nbsp<a class="delete-button">删除</a></td></tr>';;
 				}
 				Rlength=data.errorMsg;
@@ -233,7 +233,7 @@ $(function(){//没有$.ready的写法，只有$()、$().ready和$(document).read
 					/*data.param[i].createDate=data.param[i].createDate.toString();
 					data.param[i].updateDate=data.param[i].updateDate.toString();*/
 					tableData[i+PAGELENGTH*currentTerm.page]='<tr class="table-contents" id="'+data.param[i].id+'"><td><a class="td-dealer-name">'+data.param[i].name+'</a></td><td>'
-									+data.param[i].range+'</td>'+'<td>'+data.param[i].areaCode+'</td>+<td>'+data.param[i].createDate+'</td><td>'+data.param[i].createDate
+									+data.param[i].ranges+'</td>'+'<td>'+data.param[i].areaCode+'</td>+<td>'+data.param[i].createDate+'</td><td>'+data.param[i].createDate
 									+'</td><td><a class="revise-button">修改</a>&nbsp<a class="delete-button">删除</a></td></tr>';
 					}
 					Rlength=data.errorMsg;

@@ -7,7 +7,7 @@ public class StoreInfo {
 
     private String name;
 
-    private String range;
+    private String ranges;
 
     private String areaCode;
     @DateTimeFormat(pattern = "yyyy-mm-dd")
@@ -31,12 +31,12 @@ public class StoreInfo {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getRange() {
-        return range;
+    public String getRanges() {
+        return ranges;
     }
 
-    public void setRange(String range) {
-        this.range = range == null ? null : range.trim();
+    public void setRanges(String ranges) {
+        this.ranges = ranges == null ? null : ranges.trim();
     }
 
     public String getAreaCode() {

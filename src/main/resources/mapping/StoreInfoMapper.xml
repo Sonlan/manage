@@ -4,13 +4,13 @@
   <resultMap id="BaseResultMap" type="org.biac.manage.entity.StoreInfo" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="range" property="range" jdbcType="VARCHAR" />
+    <result column="ranges" property="ranges" jdbcType="VARCHAR" />
     <result column="area_code" property="areaCode" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, range, area_code, create_date, update_date
+    id, name, ranges, area_code, create_date, update_date
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -32,8 +32,8 @@
         <if test="name != null">
           and name LIKE '%${name}%'
         </if>
-        <if test="range !=null">
-          and range LIKE '%${range}%'
+        <if test="ranges !=null">
+          and ranges LIKE '%${ranges}%'
         </if>
         <if test="area_code != null and  ''!=area_code and area_code != 0">
           and area_code =#{area_code,jdbcType=INTEGER}
@@ -51,8 +51,8 @@
       <if test="name != null">
         and name LIKE '%${name}%'
       </if>
-      <if test="range !=null">
-        and range LIKE '%${range}%'
+      <if test="ranges !=null">
+        and ranges LIKE '%${ranges}%'
       </if>
       <if test="area_code != null and  ''!=area_code and area_code != 0">
         and area_code =#{area_code,jdbcType=INTEGER}
@@ -65,10 +65,10 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="org.biac.manage.entity.StoreInfo" >
-    insert into tbl_store_info (id, name, range, 
+    insert into tbl_store_info (id, name, ranges,
       area_code, create_date, update_date
       )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{range,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{ranges,jdbcType=VARCHAR},
       #{areaCode,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -78,8 +78,8 @@
       <if test="name != null" >
         name,
       </if>
-      <if test="range != null" >
-        range,
+      <if test="ranges != null" >
+        ranges,
       </if>
       <if test="areaCode != null" >
         area_code,
@@ -89,8 +89,8 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="range != null" >
-        #{range,jdbcType=VARCHAR},
+      <if test="ranges != null" >
+        #{ranges,jdbcType=VARCHAR},
       </if>
       <if test="areaCode != null" >
         #{areaCode,jdbcType=INTEGER},
@@ -103,8 +103,8 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="range != null" >
-        range = #{range,jdbcType=VARCHAR},
+      <if test="ranges != null" >
+        ranges = #{ranges,jdbcType=VARCHAR},
       </if>
       <if test="areaCode != null" >
         area_code = #{areaCode,jdbcType=INTEGER},
@@ -117,7 +117,7 @@
     update tbl_store_info
     set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
-      range = #{record.range,jdbcType=VARCHAR},
+      ranges = #{record.ranges,jdbcType=VARCHAR},
       area_code = #{record.areaCode,jdbcType=INTEGER},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
       update_date = #{record.updateDate,jdbcType=TIMESTAMP}
@@ -128,8 +128,8 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="range != null" >
-        range = #{range,jdbcType=VARCHAR},
+      <if test="ranges != null" >
+        ranges = #{ranges,jdbcType=VARCHAR},
       </if>
       <if test="areaCode != null" >
         area_code = #{areaCode,jdbcType=INTEGER},
@@ -146,7 +146,7 @@
   <update id="updateByPrimaryKey" parameterType="org.biac.manage.entity.StoreInfo" >
     update tbl_store_info
     set name = #{name,jdbcType=VARCHAR},
-      range = #{range,jdbcType=VARCHAR},
+      ranges = #{ranges,jdbcType=VARCHAR},
       area_code = #{areaCode,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_date = #{updateDate,jdbcType=TIMESTAMP}

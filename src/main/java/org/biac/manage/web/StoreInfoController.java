@@ -62,7 +62,7 @@ public class StoreInfoController {
         StoreInfo storeInfo = new StoreInfo();
         storeInfo.setId(Long.parseLong(id));
         storeInfo.setName(name);
-        storeInfo.setRange(range);
+        storeInfo.setRanges(range);
         storeInfo.setAreaCode(area_code);
 
         if(0==storeInfoService.update(storeInfo)){
@@ -85,7 +85,7 @@ public class StoreInfoController {
 
         StoreInfo storeInfo = new StoreInfo();
         storeInfo.setName(name);
-        storeInfo.setRange(range);
+        storeInfo.setRanges(range);
         storeInfo.setAreaCode(area_code);
 
         if(0==storeInfoService.add(storeInfo)){

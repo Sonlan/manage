@@ -85,7 +85,7 @@ public class StoreInfoServiceImpl implements StoreInfoService{
             int pageNum = Integer.parseInt(page);
             Map<Object,Object> map = new HashMap<Object, Object>();
             map.put("name",name);
-            map.put("range",range);
+            map.put("ranges",range);
             map.put("area_code",area_code);
             map.put("page_start",pageNum*10);
             map.put("page_end",pageNum*10+10);
@@ -109,7 +109,7 @@ public class StoreInfoServiceImpl implements StoreInfoService{
         try{
             Map<Object,Object> map = new HashMap<Object, Object>();
             map.put("name",name);
-            map.put("range",range);
+            map.put("ranges",range);
             map.put("area_code",area_code);
             return storeInfoDao.queryForSize(map).size();
         }catch (Exception e){
