@@ -102,13 +102,6 @@ public class Test {
     @RequestMapping(value = "/file")
     public void file (HttpServletRequest request,HttpServletResponse response) throws IOException{
         response.setContentType("application/json;charset=utf-8");
-/*        //上传时生成的临时文件保存目录
-        String tempPath = request.getRealPath("/WEB-INF/temp");
-        File tmpFile = new File(tempPath);
-        if (!tmpFile.exists()) {
-            //创建临时目录
-            tmpFile.mkdir();
-        }*/
         try{
             //使用Apache文件上传组件处理文件上传步骤：
             //1、创建一个DiskFileItemFactory工厂
@@ -123,12 +116,6 @@ public class Test {
             upload.setProgressListener(new ProgressListener(){
                 public void update(long pBytesRead, long pContentLength, int arg2) {
                     System.out.println("文件大小为：" + pContentLength + ",当前已处理：" + pBytesRead);
-                    /**
-                     * 文件大小为：14608,当前已处理：4096
-                     文件大小为：14608,当前已处理：7367
-                     文件大小为：14608,当前已处理：11419
-                     文件大小为：14608,当前已处理：14608
-                     */
                 }
             });
             //解决上传文件名的中文乱码

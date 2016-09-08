@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.biac.manage.dao.DataSumMapper" >
+    <resultMap id="RegionSaleRecord" type="org.biac.manage.entity.RegionSaleRecord" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="code" property="code" jdbcType="BIGINT" />
+        <result column="addr" property="addr" jdbcType="VARCHAR" />
+        <result column="dates" property="dates" jdbcType="DATE" />
+        <result column="typeid" property="typeid" jdbcType="VARCHAR" />
+        <result column="times" property="times" jdbcType="TIME" />
+        <result column="csex" property="csex" jdbcType="TINYINT" ></result>
+        <result column="r1" property="r1" jdbcType="VARCHAR" />
+        <result column="r2" property="r2" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getRequestedData" parameterType="java.util.Map" resultMap="RegionSaleRecord">
+        SELECT * from `${tableName}`
+         <where>
+          1=1
+             <if test="month != null and month != 0">
+                 and MONTH(dates) = #{month,jdbcType=VARCHAR}
+             </if>
+             <if test="hour != null and hour != 24">
+                 and HOUR(times) = #{hour,jdbcType=VARCHAR}
+             </if>
+         </where>
+    </select>
+</mapper>
